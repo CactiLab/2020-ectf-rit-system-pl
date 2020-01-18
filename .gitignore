@@ -59,6 +59,7 @@ src/ip/*/**
 proj/*
 # except this file and project generators
 !proj/create_project.tcl
+!proj/gen_bitstream.tcl
 !proj/cleanup.cmd
 !proj/cleanup.sh
 !proj/release.py

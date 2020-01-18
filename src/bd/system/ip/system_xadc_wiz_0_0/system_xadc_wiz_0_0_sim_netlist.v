@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Tue May  1 00:59:26 2018
-// Host        : ubuntu running 64-bit Ubuntu 16.04.3 LTS
+// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+// Date        : Mon May 20 11:41:21 2019
+// Host        : MM235512-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               /home/digilent/work/git/Cora-Z7-07S-base-linux/src/bd/system/ip/system_xadc_wiz_0_0/system_xadc_wiz_0_0_sim_netlist.v
+//               C:/Users/bmarquis/Documents/Cora-Z7-07S-base-linux_backup_20190520/src/bd/system/ip/system_xadc_wiz_0_0/system_xadc_wiz_0_0_sim_netlist.v
 // Design      : system_xadc_wiz_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -58,8 +58,11 @@ module system_xadc_wiz_0_0
     eos_out,
     ot_out,
     vccddro_alarm_out,
+    vccpint_alarm_out,
+    vccpaux_alarm_out,
     vccaux_alarm_out,
     vccint_alarm_out,
+    user_temp_alarm_out,
     alarm_out,
     vp_in,
     vn_in);
@@ -107,8 +110,11 @@ module system_xadc_wiz_0_0
   output eos_out;
   output ot_out;
   output vccddro_alarm_out;
+  output vccpint_alarm_out;
+  output vccpaux_alarm_out;
   output vccaux_alarm_out;
   output vccint_alarm_out;
+  output user_temp_alarm_out;
   output alarm_out;
   input vp_in;
   input vn_in;
@@ -139,6 +145,7 @@ module system_xadc_wiz_0_0
   wire s_axi_wready;
   wire [3:0]s_axi_wstrb;
   wire s_axi_wvalid;
+  wire user_temp_alarm_out;
   wire vauxn0;
   wire vauxn1;
   wire vauxn12;
@@ -160,9 +167,11 @@ module system_xadc_wiz_0_0
   wire vccaux_alarm_out;
   wire vccddro_alarm_out;
   wire vccint_alarm_out;
+  wire vccpaux_alarm_out;
+  wire vccpint_alarm_out;
   wire vn_in;
   wire vp_in;
-  wire [5:0]NLW_U0_alarm_out_UNCONNECTED;
+  wire [3:3]NLW_U0_alarm_out_UNCONNECTED;
 
   (* C_FAMILY = "virtex7" *) 
   (* C_INCLUDE_INTR = "1" *) 
@@ -174,7 +183,7 @@ module system_xadc_wiz_0_0
   (* ip_group = "LOGICORE" *) 
   (* iptype = "PERIPHERAL" *) 
   system_xadc_wiz_0_0_system_xadc_wiz_0_0_axi_xadc U0
-       (.alarm_out({alarm_out,vccddro_alarm_out,NLW_U0_alarm_out_UNCONNECTED[5:3],vccaux_alarm_out,vccint_alarm_out,NLW_U0_alarm_out_UNCONNECTED[0]}),
+       (.alarm_out({alarm_out,vccddro_alarm_out,vccpaux_alarm_out,vccpint_alarm_out,NLW_U0_alarm_out_UNCONNECTED[3],vccaux_alarm_out,vccint_alarm_out,user_temp_alarm_out}),
         .busy_out(busy_out),
         .channel_out(channel_out),
         .eoc_out(eoc_out),
@@ -5258,7 +5267,7 @@ module system_xadc_wiz_0_0_system_xadc_wiz_0_0_xadc_core_drp
   (* box_type = "PRIMITIVE" *) 
   XADC #(
     .INIT_40(16'h0000),
-    .INIT_41(16'h21A2),
+    .INIT_41(16'h21A0),
     .INIT_42(16'h0400),
     .INIT_43(16'h0000),
     .INIT_44(16'h0000),

@@ -165,7 +165,7 @@ set obj [current_project]
 set_property -name "default_lib" -value "xil_defaultlib" -objects $obj
 set_property -name "dsa.num_compute_units" -value "60" -objects $obj
 set_property -name "ip_cache_permissions" -value "read write" -objects $obj
-set_property -name "ip_output_repo" -value '$origin_dir/repo/cache' -objects $obj
+set_property -name "ip_output_repo" -value "repo/cache" -objects $obj
 set_property -name "part" -value "xc7z007sclg400-1" -objects $obj
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
@@ -191,6 +191,7 @@ update_ip_catalog -rebuild
 set obj [get_filesets sources_1]
 set files [list \
  "[file normalize "$origin_dir/src/hdl/i2s_output.vhd"]"\
+ "[file normalize "$origin_dir/src/bd/system/hdl/system_wrapper.vhd"]"\
 ]
 add_files -norecurse -fileset $obj $files
 

@@ -1,8 +1,13 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+<<<<<<< HEAD
 --Date        : Tue May  1 00:58:00 2018
 --Host        : ubuntu running 64-bit Ubuntu 16.04.3 LTS
+=======
+--Date        : Sun Jan 19 17:06:31 2020
+--Host        : vagrant-eCTF running 64-bit Ubuntu 18.10
+>>>>>>> e67857f... Fix bugs in create_project.tcl; add missing file
 --Command     : generate_target system_wrapper.bd
 --Design      : system_wrapper
 --Purpose     : IP block netlist
@@ -34,6 +39,7 @@ entity system_wrapper is
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
+<<<<<<< HEAD
     Shield_I2C_scl_io : inout STD_LOGIC;
     Shield_I2C_sda_io : inout STD_LOGIC;
     Shield_SPI_io0_io : inout STD_LOGIC;
@@ -45,6 +51,13 @@ entity system_wrapper is
     shield_dp0_dp13_tri_io : inout STD_LOGIC_VECTOR ( 13 downto 0 );
     shield_dp26_dp41_tri_io : inout STD_LOGIC_VECTOR ( 15 downto 0 );
     user_dio_tri_io : inout STD_LOGIC_VECTOR ( 11 downto 0 );
+=======
+    ja0 : out STD_LOGIC;
+    ja1 : out STD_LOGIC;
+    ja2 : out STD_LOGIC;
+    ja3 : out STD_LOGIC;
+    rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
+>>>>>>> e67857f... Fix bugs in create_project.tcl; add missing file
     vaux0_v_n : in STD_LOGIC;
     vaux0_v_p : in STD_LOGIC;
     vaux12_v_n : in STD_LOGIC;
@@ -71,6 +84,7 @@ end system_wrapper;
 architecture STRUCTURE of system_wrapper is
   component system is
   port (
+<<<<<<< HEAD
     rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
     vaux0_v_n : in STD_LOGIC;
     vaux0_v_p : in STD_LOGIC;
@@ -102,6 +116,8 @@ architecture STRUCTURE of system_wrapper is
     shield_dp26_dp41_tri_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
     shield_dp26_dp41_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
     shield_dp26_dp41_tri_t : out STD_LOGIC_VECTOR ( 15 downto 0 );
+=======
+>>>>>>> e67857f... Fix bugs in create_project.tcl; add missing file
     DDR_cas_n : inout STD_LOGIC;
     DDR_cke : inout STD_LOGIC;
     DDR_ck_n : inout STD_LOGIC;
@@ -123,6 +139,7 @@ architecture STRUCTURE of system_wrapper is
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
+<<<<<<< HEAD
     Shield_I2C_sda_i : in STD_LOGIC;
     Shield_I2C_sda_o : out STD_LOGIC;
     Shield_I2C_sda_t : out STD_LOGIC;
@@ -590,6 +607,36 @@ shield_dp26_dp41_tri_iobuf_9: component IOBUF
       O => shield_dp26_dp41_tri_i_9(9),
       T => shield_dp26_dp41_tri_t_9(9)
     );
+=======
+    vp_vn_v_n : in STD_LOGIC;
+    vp_vn_v_p : in STD_LOGIC;
+    vaux0_v_n : in STD_LOGIC;
+    vaux0_v_p : in STD_LOGIC;
+    vaux1_v_n : in STD_LOGIC;
+    vaux1_v_p : in STD_LOGIC;
+    vaux5_v_n : in STD_LOGIC;
+    vaux5_v_p : in STD_LOGIC;
+    vaux6_v_n : in STD_LOGIC;
+    vaux6_v_p : in STD_LOGIC;
+    vaux8_v_n : in STD_LOGIC;
+    vaux8_v_p : in STD_LOGIC;
+    vaux9_v_n : in STD_LOGIC;
+    vaux9_v_p : in STD_LOGIC;
+    vaux12_v_n : in STD_LOGIC;
+    vaux12_v_p : in STD_LOGIC;
+    vaux13_v_n : in STD_LOGIC;
+    vaux13_v_p : in STD_LOGIC;
+    vaux15_v_n : in STD_LOGIC;
+    vaux15_v_p : in STD_LOGIC;
+    rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    ja3 : out STD_LOGIC;
+    ja1 : out STD_LOGIC;
+    ja0 : out STD_LOGIC;
+    ja2 : out STD_LOGIC
+  );
+  end component system;
+begin
+>>>>>>> e67857f... Fix bugs in create_project.tcl; add missing file
 system_i: component system
      port map (
       DDR_addr(14 downto 0) => DDR_addr(14 downto 0),
@@ -613,6 +660,7 @@ system_i: component system
       FIXED_IO_ps_clk => FIXED_IO_ps_clk,
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
+<<<<<<< HEAD
       Shield_I2C_scl_i => Shield_I2C_scl_i,
       Shield_I2C_scl_o => Shield_I2C_scl_o,
       Shield_I2C_scl_t => Shield_I2C_scl_t,
@@ -759,6 +807,13 @@ system_i: component system
       user_dio_tri_t(2) => user_dio_tri_t_2(2),
       user_dio_tri_t(1) => user_dio_tri_t_1(1),
       user_dio_tri_t(0) => user_dio_tri_t_0(0),
+=======
+      ja0 => ja0,
+      ja1 => ja1,
+      ja2 => ja2,
+      ja3 => ja3,
+      rgb_led(5 downto 0) => rgb_led(5 downto 0),
+>>>>>>> e67857f... Fix bugs in create_project.tcl; add missing file
       vaux0_v_n => vaux0_v_n,
       vaux0_v_p => vaux0_v_p,
       vaux12_v_n => vaux12_v_n,
@@ -780,6 +835,7 @@ system_i: component system
       vp_vn_v_n => vp_vn_v_n,
       vp_vn_v_p => vp_vn_v_p
     );
+<<<<<<< HEAD
 user_dio_tri_iobuf_0: component IOBUF
      port map (
       I => user_dio_tri_o_0(0),
@@ -864,4 +920,6 @@ user_dio_tri_iobuf_9: component IOBUF
       O => user_dio_tri_i_9(9),
       T => user_dio_tri_t_9(9)
     );
+=======
+>>>>>>> e67857f... Fix bugs in create_project.tcl; add missing file
 end STRUCTURE;

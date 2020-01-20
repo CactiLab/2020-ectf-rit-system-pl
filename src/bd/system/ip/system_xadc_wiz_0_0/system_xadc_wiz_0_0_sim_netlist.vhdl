@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Mon May 20 11:41:21 2019
--- Host        : MM235512-PC running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+-- Date        : Tue May  1 00:59:26 2018
+-- Host        : ubuntu running 64-bit Ubuntu 16.04.3 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               C:/Users/bmarquis/Documents/Cora-Z7-07S-base-linux_backup_20190520/src/bd/system/ip/system_xadc_wiz_0_0/system_xadc_wiz_0_0_sim_netlist.vhdl
+--               /home/digilent/work/git/Cora-Z7-07S-base-linux/src/bd/system/ip/system_xadc_wiz_0_0/system_xadc_wiz_0_0_sim_netlist.vhdl
 -- Design      : system_xadc_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -3471,7 +3471,7 @@ begin
 XADC_INST: unisim.vcomponents.XADC
     generic map(
       INIT_40 => X"0000",
-      INIT_41 => X"21A0",
+      INIT_41 => X"21A2",
       INIT_42 => X"0400",
       INIT_43 => X"0000",
       INIT_44 => X"0000",
@@ -6141,11 +6141,8 @@ entity system_xadc_wiz_0_0 is
     eos_out : out STD_LOGIC;
     ot_out : out STD_LOGIC;
     vccddro_alarm_out : out STD_LOGIC;
-    vccpint_alarm_out : out STD_LOGIC;
-    vccpaux_alarm_out : out STD_LOGIC;
     vccaux_alarm_out : out STD_LOGIC;
     vccint_alarm_out : out STD_LOGIC;
-    user_temp_alarm_out : out STD_LOGIC;
     alarm_out : out STD_LOGIC;
     vp_in : in STD_LOGIC;
     vn_in : in STD_LOGIC
@@ -6155,7 +6152,7 @@ entity system_xadc_wiz_0_0 is
 end system_xadc_wiz_0_0;
 
 architecture STRUCTURE of system_xadc_wiz_0_0 is
-  signal NLW_U0_alarm_out_UNCONNECTED : STD_LOGIC_VECTOR ( 3 to 3 );
+  signal NLW_U0_alarm_out_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
   attribute C_FAMILY : string;
   attribute C_FAMILY of U0 : label is "virtex7";
   attribute C_INCLUDE_INTR : integer;
@@ -6179,12 +6176,10 @@ U0: entity work.system_xadc_wiz_0_0_system_xadc_wiz_0_0_axi_xadc
      port map (
       alarm_out(7) => alarm_out,
       alarm_out(6) => vccddro_alarm_out,
-      alarm_out(5) => vccpaux_alarm_out,
-      alarm_out(4) => vccpint_alarm_out,
-      alarm_out(3) => NLW_U0_alarm_out_UNCONNECTED(3),
+      alarm_out(5 downto 3) => NLW_U0_alarm_out_UNCONNECTED(5 downto 3),
       alarm_out(2) => vccaux_alarm_out,
       alarm_out(1) => vccint_alarm_out,
-      alarm_out(0) => user_temp_alarm_out,
+      alarm_out(0) => NLW_U0_alarm_out_UNCONNECTED(0),
       busy_out => busy_out,
       channel_out(4 downto 0) => channel_out(4 downto 0),
       eoc_out => eoc_out,

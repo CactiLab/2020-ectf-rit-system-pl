@@ -107,11 +107,8 @@ entity system_xadc_wiz_0_0 is
     eos_out         : out  STD_LOGIC;                        -- End of Sequence Signal
     ot_out          : out  STD_LOGIC;                        -- Over-Temperature alarm output
     vccddro_alarm_out : out  STD_LOGIC;                        -- VCCDDRO-sensor alarm output
-    vccpint_alarm_out : out  STD_LOGIC;                        -- VCCPINT-sensor alarm output
-    vccpaux_alarm_out : out  STD_LOGIC;                        -- VCCPAUX-sensor alarm output
     vccaux_alarm_out : out  STD_LOGIC;                        -- VCCAUX-sensor alarm output
     vccint_alarm_out : out  STD_LOGIC;                        -- VCCINT-sensor alarm output
-    user_temp_alarm_out : out  STD_LOGIC;                        -- Temperature-sensor alarm output
     alarm_out       : out STD_LOGIC;                         -- OR'ed output of all the Alarms
     vp_in           : in  STD_LOGIC;                         -- Dedicated Analog Input Pair
     vn_in           : in  STD_LOGIC
@@ -121,7 +118,7 @@ end system_xadc_wiz_0_0;
 architecture xilinx of system_xadc_wiz_0_0 is
 
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of xilinx : architecture is "system_xadc_wiz_0_0,xadc_wiz_v3_3_5,{component_name=system_xadc_wiz_0_0,enable_axi=true,enable_axi4stream=false,dclk_frequency=100,enable_busy=true,enable_convst=false,enable_convstclk=false,enable_dclk=true,enable_drp=false,enable_eoc=true,enable_eos=true,enable_vbram_alaram=false,enable_vccddro_alaram=true,enable_Vccint_Alaram=true,enable_Vccaux_alaram=trueenable_vccpaux_alaram=true,enable_vccpint_alaram=true,ot_alaram=true,user_temp_alaram=true,timing_mode=continuous,channel_averaging=None,sequencer_mode=on,startup_channel_selection=contineous_sequence}";
+  attribute CORE_GENERATION_INFO of xilinx : architecture is "system_xadc_wiz_0_0,xadc_wiz_v3_3_5,{component_name=system_xadc_wiz_0_0,enable_axi=true,enable_axi4stream=false,dclk_frequency=100,enable_busy=true,enable_convst=false,enable_convstclk=false,enable_dclk=true,enable_drp=false,enable_eoc=true,enable_eos=true,enable_vbram_alaram=false,enable_vccddro_alaram=true,enable_Vccint_Alaram=true,enable_Vccaux_alaram=trueenable_vccpaux_alaram=false,enable_vccpint_alaram=false,ot_alaram=true,user_temp_alaram=false,timing_mode=continuous,channel_averaging=None,sequencer_mode=on,startup_channel_selection=contineous_sequence}";
 
 
   component system_xadc_wiz_0_0_axi_xadc 
@@ -209,11 +206,8 @@ begin
 
        alarm_out <= alm_int(7);
        vccddro_alarm_out <= alm_int(6);
-       vccpaux_alarm_out <= alm_int(5);
-       vccpint_alarm_out <= alm_int(4);
        vccaux_alarm_out <= alm_int(2);
        vccint_alarm_out <= alm_int(1);
-       user_temp_alarm_out <= alm_int(0);
 
    U0 : system_xadc_wiz_0_0_axi_xadc 
    generic map

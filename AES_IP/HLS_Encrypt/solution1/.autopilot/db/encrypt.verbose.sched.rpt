@@ -1,0 +1,984 @@
+
+
+================================================================
+== Vivado HLS Report for 'encrypt'
+================================================================
+* Date:           Wed Feb 26 14:57:28 2020
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        HLS_Encrypt
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z007s-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     6.822|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  1486|  2056|  1486|  2056|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+------+------+-----------+-----------+-----------+------+----------+
+        |                 |   Latency   | Iteration |  Initiation Interval  | Trip |          |
+        |    Loop Name    |  min |  max |  Latency  |  achieved |   target  | Count| Pipelined|
+        +-----------------+------+------+-----------+-----------+-----------+------+----------+
+        |- Loop 1         |    40|    40|         10|          -|          -|     4|    no    |
+        | + Loop 1.1      |     8|     8|          2|          -|          -|     4|    no    |
+        |- Loop 2         |   210|   210|         21|          -|          -|    10|    no    |
+        | + Loop 2.1      |    16|    16|          4|          -|          -|     4|    no    |
+        |- Loop 3         |    40|    40|         10|          -|          -|     4|    no    |
+        | + Loop 3.1      |     8|     8|          2|          -|          -|     4|    no    |
+        |- Loop 4         |    40|    40|         10|          -|          -|     4|    no    |
+        | + Loop 4.1      |     8|     8|          2|          -|          -|     4|    no    |
+        |- Loop 5         |  1110|  1680| 111 ~ 168 |          -|          -|    10|    no    |
+        | + Loop 5.1      |    56|    56|         14|          -|          -|     4|    no    |
+        |  ++ Loop 5.1.1  |    12|    12|          3|          -|          -|     4|    no    |
+        | + Loop 5.2      |    16|    16|          4|          -|          -|     4|    no    |
+        | + Loop 5.3      |    40|    40|         10|          -|          -|     4|    no    |
+        |  ++ Loop 5.3.1  |     8|     8|          2|          -|          -|     4|    no    |
+        | + Loop 5.4      |    40|    40|         10|          -|          -|     4|    no    |
+        |  ++ Loop 5.4.1  |     8|     8|          2|          -|          -|     4|    no    |
+        |- Loop 6         |    40|    40|         10|          -|          -|     4|    no    |
+        | + Loop 6.1      |     8|     8|          2|          -|          -|     4|    no    |
+        +-----------------+------+------+-----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 47
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 5 
+3 --> 4 2 
+4 --> 3 
+5 --> 6 13 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 5 
+10 --> 11 
+11 --> 12 
+12 --> 9 
+13 --> 14 16 
+14 --> 15 13 
+15 --> 14 
+16 --> 17 19 
+17 --> 18 16 
+18 --> 17 
+19 --> 20 45 
+20 --> 24 21 
+21 --> 22 20 
+22 --> 23 
+23 --> 21 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 39 35 
+35 --> 36 39 
+36 --> 37 
+37 --> 38 
+38 --> 35 
+39 --> 40 42 
+40 --> 41 39 
+41 --> 40 
+42 --> 43 19 
+43 --> 44 42 
+44 --> 43 
+45 --> 46 
+46 --> 47 45 
+47 --> 46 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([16 x i8]* %PlainText) nounwind, !map !7"   --->   Operation 48 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([16 x i8]* %CipherText) nounwind, !map !13"   --->   Operation 49 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @encrypt_str) nounwind"   --->   Operation 50 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%StateArray = alloca [16 x i8], align 1" [AES_encrypt.cpp:39]   --->   Operation 51 'alloca' 'StateArray' <Predicate = true> <Delay = 0.00> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%StateArray_addr = getelementptr [16 x i8]* %StateArray, i64 0, i64 4" [AES_encrypt.cpp:109]   --->   Operation 52 'getelementptr' 'StateArray_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%StateArray_addr_1 = getelementptr [16 x i8]* %StateArray, i64 0, i64 5" [AES_encrypt.cpp:110]   --->   Operation 53 'getelementptr' 'StateArray_addr_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%StateArray_addr_2 = getelementptr [16 x i8]* %StateArray, i64 0, i64 6" [AES_encrypt.cpp:111]   --->   Operation 54 'getelementptr' 'StateArray_addr_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%StateArray_addr_3 = getelementptr [16 x i8]* %StateArray, i64 0, i64 7" [AES_encrypt.cpp:112]   --->   Operation 55 'getelementptr' 'StateArray_addr_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%StateArray_addr_4 = getelementptr [16 x i8]* %StateArray, i64 0, i64 8" [AES_encrypt.cpp:115]   --->   Operation 56 'getelementptr' 'StateArray_addr_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%StateArray_addr_5 = getelementptr [16 x i8]* %StateArray, i64 0, i64 10" [AES_encrypt.cpp:116]   --->   Operation 57 'getelementptr' 'StateArray_addr_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%StateArray_addr_6 = getelementptr [16 x i8]* %StateArray, i64 0, i64 9" [AES_encrypt.cpp:118]   --->   Operation 58 'getelementptr' 'StateArray_addr_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%StateArray_addr_7 = getelementptr [16 x i8]* %StateArray, i64 0, i64 11" [AES_encrypt.cpp:119]   --->   Operation 59 'getelementptr' 'StateArray_addr_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%StateArray_addr_8 = getelementptr [16 x i8]* %StateArray, i64 0, i64 15" [AES_encrypt.cpp:122]   --->   Operation 60 'getelementptr' 'StateArray_addr_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%StateArray_addr_9 = getelementptr [16 x i8]* %StateArray, i64 0, i64 14" [AES_encrypt.cpp:123]   --->   Operation 61 'getelementptr' 'StateArray_addr_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%StateArray_addr_10 = getelementptr [16 x i8]* %StateArray, i64 0, i64 13" [AES_encrypt.cpp:124]   --->   Operation 62 'getelementptr' 'StateArray_addr_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%StateArray_addr_11 = getelementptr [16 x i8]* %StateArray, i64 0, i64 12" [AES_encrypt.cpp:125]   --->   Operation 63 'getelementptr' 'StateArray_addr_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%ExpandedKey = alloca [176 x i8], align 1" [AES_encrypt.cpp:40]   --->   Operation 64 'alloca' 'ExpandedKey' <Predicate = true> <Delay = 0.00> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%StateArrayTmp = alloca [16 x i8], align 1" [AES_encrypt.cpp:130]   --->   Operation 65 'alloca' 'StateArrayTmp' <Predicate = true> <Delay = 0.00> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [9 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [AES_encrypt.cpp:31]   --->   Operation 66 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecMemCore([16 x i8]* %CipherText, [1 x i8]* @p_str4, [7 x i8]* @RAM_1P_str, [1 x i8]* @p_str4, i32 -1, [1 x i8]* @p_str4, [1 x i8]* @p_str4, [1 x i8]* @p_str4, [1 x i8]* @p_str4, [1 x i8]* @p_str4) nounwind" [AES_encrypt.cpp:32]   --->   Operation 67 'specmemcore' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface([16 x i8]* %CipherText, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [9 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [AES_encrypt.cpp:32]   --->   Operation 68 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%empty_3 = call i32 (...)* @_ssdm_op_SpecMemCore([16 x i8]* %PlainText, [1 x i8]* @p_str3, [7 x i8]* @RAM_1P_str, [1 x i8]* @p_str3, i32 -1, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3, [1 x i8]* @p_str3) nounwind" [AES_encrypt.cpp:33]   --->   Operation 69 'specmemcore' 'empty_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface([16 x i8]* %PlainText, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [9 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [AES_encrypt.cpp:33]   --->   Operation 70 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (1.76ns)   --->   "br label %.loopexit9" [AES_encrypt.cpp:51]   --->   Operation 71 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 1.76>
+ST_2 : Operation 72 [1/1] (0.00ns)   --->   "%i_0 = phi i3 [ 0, %0 ], [ %i, %.loopexit9.loopexit ]"   --->   Operation 72 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 73 [1/1] (1.13ns)   --->   "%icmp_ln51 = icmp eq i3 %i_0, -4" [AES_encrypt.cpp:51]   --->   Operation 73 'icmp' 'icmp_ln51' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 74 [1/1] (0.00ns)   --->   "%empty_4 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 74 'speclooptripcount' 'empty_4' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 75 [1/1] (1.65ns)   --->   "%i = add i3 %i_0, 1" [AES_encrypt.cpp:51]   --->   Operation 75 'add' 'i' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 76 [1/1] (0.00ns)   --->   "br i1 %icmp_ln51, label %.preheader14.preheader, label %.preheader15.preheader" [AES_encrypt.cpp:51]   --->   Operation 76 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 77 [1/1] (0.00ns)   --->   "%tmp = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i_0, i2 0)" [AES_encrypt.cpp:53]   --->   Operation 77 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln51)> <Delay = 0.00>
+ST_2 : Operation 78 [1/1] (0.00ns)   --->   "%zext_ln52 = zext i5 %tmp to i6" [AES_encrypt.cpp:52]   --->   Operation 78 'zext' 'zext_ln52' <Predicate = (!icmp_ln51)> <Delay = 0.00>
+ST_2 : Operation 79 [1/1] (1.76ns)   --->   "br label %.preheader15" [AES_encrypt.cpp:52]   --->   Operation 79 'br' <Predicate = (!icmp_ln51)> <Delay = 1.76>
+ST_2 : Operation 80 [1/1] (1.76ns)   --->   "br label %.preheader14" [AES_encrypt.cpp:58]   --->   Operation 80 'br' <Predicate = (icmp_ln51)> <Delay = 1.76>
+
+State 3 <SV = 2> <Delay = 5.03>
+ST_3 : Operation 81 [1/1] (0.00ns)   --->   "%j_0 = phi i3 [ %j, %1 ], [ 0, %.preheader15.preheader ]"   --->   Operation 81 'phi' 'j_0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 82 [1/1] (1.13ns)   --->   "%icmp_ln52 = icmp eq i3 %j_0, -4" [AES_encrypt.cpp:52]   --->   Operation 82 'icmp' 'icmp_ln52' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 83 [1/1] (0.00ns)   --->   "%empty_5 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 83 'speclooptripcount' 'empty_5' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 84 [1/1] (1.65ns)   --->   "%j = add i3 %j_0, 1" [AES_encrypt.cpp:52]   --->   Operation 84 'add' 'j' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 85 [1/1] (0.00ns)   --->   "br i1 %icmp_ln52, label %.loopexit9.loopexit, label %1" [AES_encrypt.cpp:52]   --->   Operation 85 'br' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%zext_ln53 = zext i3 %j_0 to i6" [AES_encrypt.cpp:53]   --->   Operation 86 'zext' 'zext_ln53' <Predicate = (!icmp_ln52)> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (1.78ns)   --->   "%add_ln53 = add i6 %zext_ln52, %zext_ln53" [AES_encrypt.cpp:53]   --->   Operation 87 'add' 'add_ln53' <Predicate = (!icmp_ln52)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 88 [1/1] (0.00ns)   --->   "%zext_ln53_1 = zext i6 %add_ln53 to i64" [AES_encrypt.cpp:53]   --->   Operation 88 'zext' 'zext_ln53_1' <Predicate = (!icmp_ln52)> <Delay = 0.00>
+ST_3 : Operation 89 [1/1] (0.00ns)   --->   "%Key1_addr = getelementptr [16 x i8]* @Key1, i64 0, i64 %zext_ln53_1" [AES_encrypt.cpp:53]   --->   Operation 89 'getelementptr' 'Key1_addr' <Predicate = (!icmp_ln52)> <Delay = 0.00>
+ST_3 : Operation 90 [2/2] (3.25ns)   --->   "%Key1_load = load i8* %Key1_addr, align 1" [AES_encrypt.cpp:53]   --->   Operation 90 'load' 'Key1_load' <Predicate = (!icmp_ln52)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_3 : Operation 91 [1/1] (0.00ns)   --->   "br label %.loopexit9"   --->   Operation 91 'br' <Predicate = (icmp_ln52)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 6.50>
+ST_4 : Operation 92 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_4 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln53_1" [AES_encrypt.cpp:53]   --->   Operation 92 'getelementptr' 'ExpandedKey_addr_4' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 93 [1/2] (3.25ns)   --->   "%Key1_load = load i8* %Key1_addr, align 1" [AES_encrypt.cpp:53]   --->   Operation 93 'load' 'Key1_load' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_4 : Operation 94 [1/1] (3.25ns)   --->   "store i8 %Key1_load, i8* %ExpandedKey_addr_4, align 1" [AES_encrypt.cpp:53]   --->   Operation 94 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_4 : Operation 95 [1/1] (0.00ns)   --->   "br label %.preheader15" [AES_encrypt.cpp:52]   --->   Operation 95 'br' <Predicate = true> <Delay = 0.00>
+
+State 5 <SV = 2> <Delay = 4.98>
+ST_5 : Operation 96 [1/1] (0.00ns)   --->   "%i1_0 = phi i4 [ %i_9, %5 ], [ 1, %.preheader14.preheader ]"   --->   Operation 96 'phi' 'i1_0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 97 [1/1] (1.30ns)   --->   "%icmp_ln58 = icmp eq i4 %i1_0, -5" [AES_encrypt.cpp:58]   --->   Operation 97 'icmp' 'icmp_ln58' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 98 [1/1] (0.00ns)   --->   "%empty_6 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10) nounwind"   --->   Operation 98 'speclooptripcount' 'empty_6' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 99 [1/1] (0.00ns)   --->   "br i1 %icmp_ln58, label %.preheader13.preheader, label %2" [AES_encrypt.cpp:58]   --->   Operation 99 'br' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 100 [1/1] (1.73ns)   --->   "%add_ln60 = add i4 %i1_0, -1" [AES_encrypt.cpp:60]   --->   Operation 100 'add' 'add_ln60' <Predicate = (!icmp_ln58)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 101 [1/1] (0.00ns)   --->   "%tmp_1 = call i8 @_ssdm_op_BitConcatenate.i8.i4.i4(i4 %add_ln60, i4 0)" [AES_encrypt.cpp:60]   --->   Operation 101 'bitconcatenate' 'tmp_1' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 102 [1/1] (0.00ns)   --->   "%or_ln60_1 = or i8 %tmp_1, 7" [AES_encrypt.cpp:60]   --->   Operation 102 'or' 'or_ln60_1' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 103 [1/1] (0.00ns)   --->   "%tmp_3 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %or_ln60_1)" [AES_encrypt.cpp:60]   --->   Operation 103 'bitconcatenate' 'tmp_3' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 104 [1/1] (0.00ns)   --->   "%ExpandedKey_addr = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %tmp_3" [AES_encrypt.cpp:60]   --->   Operation 104 'getelementptr' 'ExpandedKey_addr' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 105 [1/1] (0.00ns)   --->   "%or_ln61 = or i8 %tmp_1, 11" [AES_encrypt.cpp:61]   --->   Operation 105 'or' 'or_ln61' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 106 [1/1] (0.00ns)   --->   "%tmp_4 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %or_ln61)" [AES_encrypt.cpp:61]   --->   Operation 106 'bitconcatenate' 'tmp_4' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 107 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_1 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %tmp_4" [AES_encrypt.cpp:61]   --->   Operation 107 'getelementptr' 'ExpandedKey_addr_1' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_5 : Operation 108 [2/2] (3.25ns)   --->   "%ExpandedKey_load = load i8* %ExpandedKey_addr, align 1" [AES_encrypt.cpp:60]   --->   Operation 108 'load' 'ExpandedKey_load' <Predicate = (!icmp_ln58)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_5 : Operation 109 [2/2] (3.25ns)   --->   "%ExpandedKey_load_1 = load i8* %ExpandedKey_addr_1, align 1" [AES_encrypt.cpp:61]   --->   Operation 109 'load' 'ExpandedKey_load_1' <Predicate = (!icmp_ln58)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_5 : Operation 110 [1/1] (1.76ns)   --->   "br label %.preheader13" [AES_encrypt.cpp:88]   --->   Operation 110 'br' <Predicate = (icmp_ln58)> <Delay = 1.76>
+
+State 6 <SV = 3> <Delay = 3.25>
+ST_6 : Operation 111 [1/1] (0.00ns)   --->   "%or_ln62_1 = or i8 %tmp_1, 15" [AES_encrypt.cpp:62]   --->   Operation 111 'or' 'or_ln62_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 112 [1/1] (0.00ns)   --->   "%tmp_6 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %or_ln62_1)" [AES_encrypt.cpp:62]   --->   Operation 112 'bitconcatenate' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 113 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_2 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %tmp_6" [AES_encrypt.cpp:62]   --->   Operation 113 'getelementptr' 'ExpandedKey_addr_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 114 [1/1] (0.00ns)   --->   "%or_ln63 = or i8 %tmp_1, 3" [AES_encrypt.cpp:63]   --->   Operation 114 'or' 'or_ln63' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 115 [1/1] (0.00ns)   --->   "%tmp_7 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %or_ln63)" [AES_encrypt.cpp:63]   --->   Operation 115 'bitconcatenate' 'tmp_7' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 116 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_3 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %tmp_7" [AES_encrypt.cpp:63]   --->   Operation 116 'getelementptr' 'ExpandedKey_addr_3' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 117 [1/2] (3.25ns)   --->   "%ExpandedKey_load = load i8* %ExpandedKey_addr, align 1" [AES_encrypt.cpp:60]   --->   Operation 117 'load' 'ExpandedKey_load' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_6 : Operation 118 [1/2] (3.25ns)   --->   "%ExpandedKey_load_1 = load i8* %ExpandedKey_addr_1, align 1" [AES_encrypt.cpp:61]   --->   Operation 118 'load' 'ExpandedKey_load_1' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_6 : Operation 119 [2/2] (3.25ns)   --->   "%ExpandedKey_load_2 = load i8* %ExpandedKey_addr_2, align 1" [AES_encrypt.cpp:62]   --->   Operation 119 'load' 'ExpandedKey_load_2' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_6 : Operation 120 [2/2] (3.25ns)   --->   "%ExpandedKey_load_3 = load i8* %ExpandedKey_addr_3, align 1" [AES_encrypt.cpp:63]   --->   Operation 120 'load' 'ExpandedKey_load_3' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 7 <SV = 4> <Delay = 6.50>
+ST_7 : Operation 121 [1/1] (0.00ns)   --->   "%zext_ln60 = zext i4 %add_ln60 to i64" [AES_encrypt.cpp:60]   --->   Operation 121 'zext' 'zext_ln60' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 122 [1/2] (3.25ns)   --->   "%ExpandedKey_load_2 = load i8* %ExpandedKey_addr_2, align 1" [AES_encrypt.cpp:62]   --->   Operation 122 'load' 'ExpandedKey_load_2' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_7 : Operation 123 [1/2] (3.25ns)   --->   "%ExpandedKey_load_3 = load i8* %ExpandedKey_addr_3, align 1" [AES_encrypt.cpp:63]   --->   Operation 123 'load' 'ExpandedKey_load_3' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_7 : Operation 124 [1/1] (0.00ns)   --->   "%zext_ln66 = zext i8 %ExpandedKey_load to i64" [AES_encrypt.cpp:66]   --->   Operation 124 'zext' 'zext_ln66' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 125 [1/1] (0.00ns)   --->   "%SBox_addr = getelementptr inbounds [256 x i8]* @SBox, i64 0, i64 %zext_ln66" [AES_encrypt.cpp:66]   --->   Operation 125 'getelementptr' 'SBox_addr' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 126 [2/2] (3.25ns)   --->   "%SBox_load = load i8* %SBox_addr, align 1" [AES_encrypt.cpp:66]   --->   Operation 126 'load' 'SBox_load' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_7 : Operation 127 [1/1] (0.00ns)   --->   "%zext_ln67 = zext i8 %ExpandedKey_load_1 to i64" [AES_encrypt.cpp:67]   --->   Operation 127 'zext' 'zext_ln67' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 128 [1/1] (0.00ns)   --->   "%SBox_addr_1 = getelementptr inbounds [256 x i8]* @SBox, i64 0, i64 %zext_ln67" [AES_encrypt.cpp:67]   --->   Operation 128 'getelementptr' 'SBox_addr_1' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 129 [2/2] (3.25ns)   --->   "%TempKeyCol_1 = load i8* %SBox_addr_1, align 1" [AES_encrypt.cpp:67]   --->   Operation 129 'load' 'TempKeyCol_1' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_7 : Operation 130 [1/1] (0.00ns)   --->   "%zext_ln68 = zext i8 %ExpandedKey_load_2 to i64" [AES_encrypt.cpp:68]   --->   Operation 130 'zext' 'zext_ln68' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 131 [1/1] (0.00ns)   --->   "%SBox_addr_2 = getelementptr inbounds [256 x i8]* @SBox, i64 0, i64 %zext_ln68" [AES_encrypt.cpp:68]   --->   Operation 131 'getelementptr' 'SBox_addr_2' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 132 [2/2] (3.25ns)   --->   "%TempKeyCol_2 = load i8* %SBox_addr_2, align 1" [AES_encrypt.cpp:68]   --->   Operation 132 'load' 'TempKeyCol_2' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_7 : Operation 133 [1/1] (0.00ns)   --->   "%zext_ln69 = zext i8 %ExpandedKey_load_3 to i64" [AES_encrypt.cpp:69]   --->   Operation 133 'zext' 'zext_ln69' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 134 [1/1] (0.00ns)   --->   "%SBox_addr_3 = getelementptr inbounds [256 x i8]* @SBox, i64 0, i64 %zext_ln69" [AES_encrypt.cpp:69]   --->   Operation 134 'getelementptr' 'SBox_addr_3' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 135 [2/2] (3.25ns)   --->   "%TempKeyCol_3 = load i8* %SBox_addr_3, align 1" [AES_encrypt.cpp:69]   --->   Operation 135 'load' 'TempKeyCol_3' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_7 : Operation 136 [1/1] (0.00ns)   --->   "%RCon_addr = getelementptr inbounds [10 x i8]* @RCon, i64 0, i64 %zext_ln60" [AES_encrypt.cpp:72]   --->   Operation 136 'getelementptr' 'RCon_addr' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 137 [2/2] (3.25ns)   --->   "%RCon_load = load i8* %RCon_addr, align 1" [AES_encrypt.cpp:72]   --->   Operation 137 'load' 'RCon_load' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+
+State 8 <SV = 5> <Delay = 4.24>
+ST_8 : Operation 138 [1/1] (0.00ns)   --->   "%or_ln60 = or i8 %tmp_1, 4" [AES_encrypt.cpp:60]   --->   Operation 138 'or' 'or_ln60' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 139 [1/1] (0.00ns)   --->   "%tmp_2_cast = call i9 @_ssdm_op_BitConcatenate.i9.i1.i8(i1 false, i8 %or_ln60)" [AES_encrypt.cpp:60]   --->   Operation 139 'bitconcatenate' 'tmp_2_cast' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 140 [1/1] (0.00ns)   --->   "%or_ln62 = or i8 %tmp_1, 12" [AES_encrypt.cpp:62]   --->   Operation 140 'or' 'or_ln62' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 141 [1/1] (0.00ns)   --->   "%tmp_5_cast = call i9 @_ssdm_op_BitConcatenate.i9.i1.i8(i1 false, i8 %or_ln62)" [AES_encrypt.cpp:62]   --->   Operation 141 'bitconcatenate' 'tmp_5_cast' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 142 [1/2] (3.25ns)   --->   "%SBox_load = load i8* %SBox_addr, align 1" [AES_encrypt.cpp:66]   --->   Operation 142 'load' 'SBox_load' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_8 : Operation 143 [1/2] (3.25ns)   --->   "%TempKeyCol_1 = load i8* %SBox_addr_1, align 1" [AES_encrypt.cpp:67]   --->   Operation 143 'load' 'TempKeyCol_1' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_8 : Operation 144 [1/2] (3.25ns)   --->   "%TempKeyCol_2 = load i8* %SBox_addr_2, align 1" [AES_encrypt.cpp:68]   --->   Operation 144 'load' 'TempKeyCol_2' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_8 : Operation 145 [1/2] (3.25ns)   --->   "%TempKeyCol_3 = load i8* %SBox_addr_3, align 1" [AES_encrypt.cpp:69]   --->   Operation 145 'load' 'TempKeyCol_3' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_8 : Operation 146 [1/2] (3.25ns)   --->   "%RCon_load = load i8* %RCon_addr, align 1" [AES_encrypt.cpp:72]   --->   Operation 146 'load' 'RCon_load' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_8 : Operation 147 [1/1] (0.99ns)   --->   "%TempKeyCol_0 = xor i8 %RCon_load, %SBox_load" [AES_encrypt.cpp:72]   --->   Operation 147 'xor' 'TempKeyCol_0' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 148 [1/1] (0.00ns)   --->   "%tmp_8 = call i8 @_ssdm_op_BitConcatenate.i8.i4.i4(i4 %i1_0, i4 0)" [AES_encrypt.cpp:81]   --->   Operation 148 'bitconcatenate' 'tmp_8' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 149 [1/1] (0.00ns)   --->   "%or_ln82 = or i8 %tmp_8, 4" [AES_encrypt.cpp:82]   --->   Operation 149 'or' 'or_ln82' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 150 [1/1] (0.00ns)   --->   "%tmp_9_cast = call i9 @_ssdm_op_BitConcatenate.i9.i1.i8(i1 false, i8 %or_ln82)" [AES_encrypt.cpp:84]   --->   Operation 150 'bitconcatenate' 'tmp_9_cast' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 151 [1/1] (0.00ns)   --->   "%or_ln84 = or i8 %tmp_8, 12" [AES_encrypt.cpp:84]   --->   Operation 151 'or' 'or_ln84' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 152 [1/1] (0.00ns)   --->   "%tmp_10_cast = call i9 @_ssdm_op_BitConcatenate.i9.i1.i8(i1 false, i8 %or_ln84)" [AES_encrypt.cpp:75]   --->   Operation 152 'bitconcatenate' 'tmp_10_cast' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 153 [1/1] (1.76ns)   --->   "br label %3" [AES_encrypt.cpp:75]   --->   Operation 153 'br' <Predicate = true> <Delay = 1.76>
+
+State 9 <SV = 6> <Delay = 5.07>
+ST_9 : Operation 154 [1/1] (0.00ns)   --->   "%TempKeyCol_3_0 = phi i8 [ %TempKeyCol_3, %2 ], [ %TempKeyCol_3_1, %4 ]"   --->   Operation 154 'phi' 'TempKeyCol_3_0' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 155 [1/1] (0.00ns)   --->   "%TempKeyCol_2_0 = phi i8 [ %TempKeyCol_2, %2 ], [ %TempKeyCol_2_1, %4 ]"   --->   Operation 155 'phi' 'TempKeyCol_2_0' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 156 [1/1] (0.00ns)   --->   "%TempKeyCol_1_0 = phi i8 [ %TempKeyCol_1, %2 ], [ %TempKeyCol_1_1, %4 ]"   --->   Operation 156 'phi' 'TempKeyCol_1_0' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 157 [1/1] (0.00ns)   --->   "%TempKeyCol_0_0 = phi i8 [ %TempKeyCol_0, %2 ], [ %TempKeyCol_0_1, %4 ]"   --->   Operation 157 'phi' 'TempKeyCol_0_0' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 158 [1/1] (0.00ns)   --->   "%j2_0 = phi i3 [ 0, %2 ], [ %j_1, %4 ]"   --->   Operation 158 'phi' 'j2_0' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 159 [1/1] (1.13ns)   --->   "%icmp_ln75 = icmp eq i3 %j2_0, -4" [AES_encrypt.cpp:75]   --->   Operation 159 'icmp' 'icmp_ln75' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 160 [1/1] (0.00ns)   --->   "%empty_7 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 160 'speclooptripcount' 'empty_7' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 161 [1/1] (1.65ns)   --->   "%j_1 = add i3 %j2_0, 1" [AES_encrypt.cpp:75]   --->   Operation 161 'add' 'j_1' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 162 [1/1] (0.00ns)   --->   "br i1 %icmp_ln75, label %5, label %4" [AES_encrypt.cpp:75]   --->   Operation 162 'br' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 163 [1/1] (0.00ns)   --->   "%zext_ln76 = zext i3 %j2_0 to i9" [AES_encrypt.cpp:76]   --->   Operation 163 'zext' 'zext_ln76' <Predicate = (!icmp_ln75)> <Delay = 0.00>
+ST_9 : Operation 164 [1/1] (0.00ns)   --->   "%tmp_2 = call i8 @_ssdm_op_BitConcatenate.i8.i4.i1.i3(i4 %add_ln60, i1 false, i3 %j2_0)" [AES_encrypt.cpp:76]   --->   Operation 164 'bitconcatenate' 'tmp_2' <Predicate = (!icmp_ln75)> <Delay = 0.00>
+ST_9 : Operation 165 [1/1] (0.00ns)   --->   "%zext_ln76_1 = zext i8 %tmp_2 to i64" [AES_encrypt.cpp:76]   --->   Operation 165 'zext' 'zext_ln76_1' <Predicate = (!icmp_ln75)> <Delay = 0.00>
+ST_9 : Operation 166 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_5 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln76_1" [AES_encrypt.cpp:76]   --->   Operation 166 'getelementptr' 'ExpandedKey_addr_5' <Predicate = (!icmp_ln75)> <Delay = 0.00>
+ST_9 : Operation 167 [1/1] (1.82ns)   --->   "%add_ln77 = add i9 %zext_ln76, %tmp_2_cast" [AES_encrypt.cpp:77]   --->   Operation 167 'add' 'add_ln77' <Predicate = (!icmp_ln75)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 168 [1/1] (0.00ns)   --->   "%zext_ln77 = zext i9 %add_ln77 to i64" [AES_encrypt.cpp:77]   --->   Operation 168 'zext' 'zext_ln77' <Predicate = (!icmp_ln75)> <Delay = 0.00>
+ST_9 : Operation 169 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_6 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln77" [AES_encrypt.cpp:77]   --->   Operation 169 'getelementptr' 'ExpandedKey_addr_6' <Predicate = (!icmp_ln75)> <Delay = 0.00>
+ST_9 : Operation 170 [1/1] (1.82ns)   --->   "%add_ln79 = add i9 %zext_ln76, %tmp_5_cast" [AES_encrypt.cpp:79]   --->   Operation 170 'add' 'add_ln79' <Predicate = (!icmp_ln75)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 171 [1/1] (1.82ns)   --->   "%add_ln82 = add i9 %zext_ln76, %tmp_9_cast" [AES_encrypt.cpp:82]   --->   Operation 171 'add' 'add_ln82' <Predicate = (!icmp_ln75)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 172 [1/1] (1.82ns)   --->   "%add_ln84 = add i9 %zext_ln76, %tmp_10_cast" [AES_encrypt.cpp:84]   --->   Operation 172 'add' 'add_ln84' <Predicate = (!icmp_ln75)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 173 [2/2] (3.25ns)   --->   "%ExpandedKey_load_4 = load i8* %ExpandedKey_addr_5, align 1" [AES_encrypt.cpp:76]   --->   Operation 173 'load' 'ExpandedKey_load_4' <Predicate = (!icmp_ln75)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_9 : Operation 174 [2/2] (3.25ns)   --->   "%ExpandedKey_load_5 = load i8* %ExpandedKey_addr_6, align 1" [AES_encrypt.cpp:77]   --->   Operation 174 'load' 'ExpandedKey_load_5' <Predicate = (!icmp_ln75)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_9 : Operation 175 [1/1] (1.73ns)   --->   "%i_9 = add i4 %i1_0, 1" [AES_encrypt.cpp:58]   --->   Operation 175 'add' 'i_9' <Predicate = (icmp_ln75)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 176 [1/1] (0.00ns)   --->   "br label %.preheader14" [AES_encrypt.cpp:58]   --->   Operation 176 'br' <Predicate = (icmp_ln75)> <Delay = 0.00>
+
+State 10 <SV = 7> <Delay = 4.24>
+ST_10 : Operation 177 [1/1] (0.00ns)   --->   "%or_ln78 = or i8 %tmp_2, 8" [AES_encrypt.cpp:78]   --->   Operation 177 'or' 'or_ln78' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 178 [1/1] (0.00ns)   --->   "%tmp_5 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %or_ln78)" [AES_encrypt.cpp:78]   --->   Operation 178 'bitconcatenate' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 179 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_7 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %tmp_5" [AES_encrypt.cpp:78]   --->   Operation 179 'getelementptr' 'ExpandedKey_addr_7' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 180 [1/1] (0.00ns)   --->   "%zext_ln79 = zext i9 %add_ln79 to i64" [AES_encrypt.cpp:79]   --->   Operation 180 'zext' 'zext_ln79' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 181 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_8 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln79" [AES_encrypt.cpp:79]   --->   Operation 181 'getelementptr' 'ExpandedKey_addr_8' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 182 [1/2] (3.25ns)   --->   "%ExpandedKey_load_4 = load i8* %ExpandedKey_addr_5, align 1" [AES_encrypt.cpp:76]   --->   Operation 182 'load' 'ExpandedKey_load_4' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_10 : Operation 183 [1/1] (0.99ns)   --->   "%TempKeyCol_0_1 = xor i8 %ExpandedKey_load_4, %TempKeyCol_0_0" [AES_encrypt.cpp:76]   --->   Operation 183 'xor' 'TempKeyCol_0_1' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 184 [1/2] (3.25ns)   --->   "%ExpandedKey_load_5 = load i8* %ExpandedKey_addr_6, align 1" [AES_encrypt.cpp:77]   --->   Operation 184 'load' 'ExpandedKey_load_5' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_10 : Operation 185 [1/1] (0.99ns)   --->   "%TempKeyCol_1_1 = xor i8 %ExpandedKey_load_5, %TempKeyCol_1_0" [AES_encrypt.cpp:77]   --->   Operation 185 'xor' 'TempKeyCol_1_1' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 186 [2/2] (3.25ns)   --->   "%ExpandedKey_load_6 = load i8* %ExpandedKey_addr_7, align 1" [AES_encrypt.cpp:78]   --->   Operation 186 'load' 'ExpandedKey_load_6' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_10 : Operation 187 [2/2] (3.25ns)   --->   "%ExpandedKey_load_7 = load i8* %ExpandedKey_addr_8, align 1" [AES_encrypt.cpp:79]   --->   Operation 187 'load' 'ExpandedKey_load_7' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 11 <SV = 8> <Delay = 4.24>
+ST_11 : Operation 188 [1/1] (0.00ns)   --->   "%tmp_9 = call i8 @_ssdm_op_BitConcatenate.i8.i4.i1.i3(i4 %i1_0, i1 false, i3 %j2_0)" [AES_encrypt.cpp:81]   --->   Operation 188 'bitconcatenate' 'tmp_9' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 189 [1/1] (0.00ns)   --->   "%zext_ln81 = zext i8 %tmp_9 to i64" [AES_encrypt.cpp:81]   --->   Operation 189 'zext' 'zext_ln81' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 190 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_9 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln81" [AES_encrypt.cpp:81]   --->   Operation 190 'getelementptr' 'ExpandedKey_addr_9' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 191 [1/1] (0.00ns)   --->   "%zext_ln82 = zext i9 %add_ln82 to i64" [AES_encrypt.cpp:82]   --->   Operation 191 'zext' 'zext_ln82' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 192 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_10 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln82" [AES_encrypt.cpp:82]   --->   Operation 192 'getelementptr' 'ExpandedKey_addr_10' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 193 [1/2] (3.25ns)   --->   "%ExpandedKey_load_6 = load i8* %ExpandedKey_addr_7, align 1" [AES_encrypt.cpp:78]   --->   Operation 193 'load' 'ExpandedKey_load_6' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_11 : Operation 194 [1/1] (0.99ns)   --->   "%TempKeyCol_2_1 = xor i8 %ExpandedKey_load_6, %TempKeyCol_2_0" [AES_encrypt.cpp:78]   --->   Operation 194 'xor' 'TempKeyCol_2_1' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 195 [1/2] (3.25ns)   --->   "%ExpandedKey_load_7 = load i8* %ExpandedKey_addr_8, align 1" [AES_encrypt.cpp:79]   --->   Operation 195 'load' 'ExpandedKey_load_7' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_11 : Operation 196 [1/1] (0.99ns)   --->   "%TempKeyCol_3_1 = xor i8 %ExpandedKey_load_7, %TempKeyCol_3_0" [AES_encrypt.cpp:79]   --->   Operation 196 'xor' 'TempKeyCol_3_1' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 197 [1/1] (3.25ns)   --->   "store i8 %TempKeyCol_0_1, i8* %ExpandedKey_addr_9, align 1" [AES_encrypt.cpp:81]   --->   Operation 197 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_11 : Operation 198 [1/1] (3.25ns)   --->   "store i8 %TempKeyCol_1_1, i8* %ExpandedKey_addr_10, align 1" [AES_encrypt.cpp:82]   --->   Operation 198 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 12 <SV = 9> <Delay = 3.25>
+ST_12 : Operation 199 [1/1] (0.00ns)   --->   "%or_ln83 = or i8 %tmp_9, 8" [AES_encrypt.cpp:83]   --->   Operation 199 'or' 'or_ln83' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 200 [1/1] (0.00ns)   --->   "%tmp_10 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %or_ln83)" [AES_encrypt.cpp:83]   --->   Operation 200 'bitconcatenate' 'tmp_10' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 201 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_11 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %tmp_10" [AES_encrypt.cpp:83]   --->   Operation 201 'getelementptr' 'ExpandedKey_addr_11' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 202 [1/1] (0.00ns)   --->   "%zext_ln84 = zext i9 %add_ln84 to i64" [AES_encrypt.cpp:84]   --->   Operation 202 'zext' 'zext_ln84' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 203 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_12 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln84" [AES_encrypt.cpp:84]   --->   Operation 203 'getelementptr' 'ExpandedKey_addr_12' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 204 [1/1] (3.25ns)   --->   "store i8 %TempKeyCol_2_1, i8* %ExpandedKey_addr_11, align 1" [AES_encrypt.cpp:83]   --->   Operation 204 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_12 : Operation 205 [1/1] (3.25ns)   --->   "store i8 %TempKeyCol_3_1, i8* %ExpandedKey_addr_12, align 1" [AES_encrypt.cpp:84]   --->   Operation 205 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_12 : Operation 206 [1/1] (0.00ns)   --->   "br label %3" [AES_encrypt.cpp:75]   --->   Operation 206 'br' <Predicate = true> <Delay = 0.00>
+
+State 13 <SV = 3> <Delay = 1.76>
+ST_13 : Operation 207 [1/1] (0.00ns)   --->   "%i3_0 = phi i3 [ %i_2, %.preheader13.loopexit ], [ 0, %.preheader13.preheader ]"   --->   Operation 207 'phi' 'i3_0' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 208 [1/1] (1.13ns)   --->   "%icmp_ln88 = icmp eq i3 %i3_0, -4" [AES_encrypt.cpp:88]   --->   Operation 208 'icmp' 'icmp_ln88' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 209 [1/1] (0.00ns)   --->   "%empty_8 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 209 'speclooptripcount' 'empty_8' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 210 [1/1] (1.65ns)   --->   "%i_2 = add i3 %i3_0, 1" [AES_encrypt.cpp:88]   --->   Operation 210 'add' 'i_2' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 211 [1/1] (0.00ns)   --->   "br i1 %icmp_ln88, label %.preheader11.preheader, label %.preheader12.preheader" [AES_encrypt.cpp:88]   --->   Operation 211 'br' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 212 [1/1] (0.00ns)   --->   "%tmp_s = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i3_0, i2 0)" [AES_encrypt.cpp:90]   --->   Operation 212 'bitconcatenate' 'tmp_s' <Predicate = (!icmp_ln88)> <Delay = 0.00>
+ST_13 : Operation 213 [1/1] (0.00ns)   --->   "%zext_ln89 = zext i5 %tmp_s to i6" [AES_encrypt.cpp:89]   --->   Operation 213 'zext' 'zext_ln89' <Predicate = (!icmp_ln88)> <Delay = 0.00>
+ST_13 : Operation 214 [1/1] (1.76ns)   --->   "br label %.preheader12" [AES_encrypt.cpp:89]   --->   Operation 214 'br' <Predicate = (!icmp_ln88)> <Delay = 1.76>
+ST_13 : Operation 215 [1/1] (1.76ns)   --->   "br label %.preheader11" [AES_encrypt.cpp:95]   --->   Operation 215 'br' <Predicate = (icmp_ln88)> <Delay = 1.76>
+
+State 14 <SV = 4> <Delay = 4.10>
+ST_14 : Operation 216 [1/1] (0.00ns)   --->   "%j4_0 = phi i3 [ %j_2, %6 ], [ 0, %.preheader12.preheader ]"   --->   Operation 216 'phi' 'j4_0' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 217 [1/1] (1.13ns)   --->   "%icmp_ln89 = icmp eq i3 %j4_0, -4" [AES_encrypt.cpp:89]   --->   Operation 217 'icmp' 'icmp_ln89' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 218 [1/1] (0.00ns)   --->   "%empty_9 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 218 'speclooptripcount' 'empty_9' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 219 [1/1] (1.65ns)   --->   "%j_2 = add i3 %j4_0, 1" [AES_encrypt.cpp:89]   --->   Operation 219 'add' 'j_2' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 220 [1/1] (0.00ns)   --->   "br i1 %icmp_ln89, label %.preheader13.loopexit, label %6" [AES_encrypt.cpp:89]   --->   Operation 220 'br' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 221 [1/1] (0.00ns)   --->   "%zext_ln90 = zext i3 %j4_0 to i6" [AES_encrypt.cpp:90]   --->   Operation 221 'zext' 'zext_ln90' <Predicate = (!icmp_ln89)> <Delay = 0.00>
+ST_14 : Operation 222 [1/1] (1.78ns)   --->   "%add_ln90 = add i6 %zext_ln89, %zext_ln90" [AES_encrypt.cpp:90]   --->   Operation 222 'add' 'add_ln90' <Predicate = (!icmp_ln89)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 223 [1/1] (0.00ns)   --->   "%zext_ln90_1 = zext i6 %add_ln90 to i64" [AES_encrypt.cpp:90]   --->   Operation 223 'zext' 'zext_ln90_1' <Predicate = (!icmp_ln89)> <Delay = 0.00>
+ST_14 : Operation 224 [1/1] (0.00ns)   --->   "%PlainText_addr = getelementptr [16 x i8]* %PlainText, i64 0, i64 %zext_ln90_1" [AES_encrypt.cpp:90]   --->   Operation 224 'getelementptr' 'PlainText_addr' <Predicate = (!icmp_ln89)> <Delay = 0.00>
+ST_14 : Operation 225 [2/2] (2.32ns)   --->   "%PlainText_load = load i8* %PlainText_addr, align 1" [AES_encrypt.cpp:90]   --->   Operation 225 'load' 'PlainText_load' <Predicate = (!icmp_ln89)> <Delay = 2.32> <Core = "RAM_1P">   --->   Core 44 'RAM_1P' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 8> <Depth = 16> <RAM>
+ST_14 : Operation 226 [1/1] (0.00ns)   --->   "br label %.preheader13"   --->   Operation 226 'br' <Predicate = (icmp_ln89)> <Delay = 0.00>
+
+State 15 <SV = 5> <Delay = 4.64>
+ST_15 : Operation 227 [1/1] (0.00ns)   --->   "%StateArray_addr_12 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln90_1" [AES_encrypt.cpp:90]   --->   Operation 227 'getelementptr' 'StateArray_addr_12' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 228 [1/2] (2.32ns)   --->   "%PlainText_load = load i8* %PlainText_addr, align 1" [AES_encrypt.cpp:90]   --->   Operation 228 'load' 'PlainText_load' <Predicate = true> <Delay = 2.32> <Core = "RAM_1P">   --->   Core 44 'RAM_1P' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 8> <Depth = 16> <RAM>
+ST_15 : Operation 229 [1/1] (2.32ns)   --->   "store i8 %PlainText_load, i8* %StateArray_addr_12, align 1" [AES_encrypt.cpp:90]   --->   Operation 229 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_15 : Operation 230 [1/1] (0.00ns)   --->   "br label %.preheader12" [AES_encrypt.cpp:89]   --->   Operation 230 'br' <Predicate = true> <Delay = 0.00>
+
+State 16 <SV = 4> <Delay = 1.76>
+ST_16 : Operation 231 [1/1] (0.00ns)   --->   "%i5_0 = phi i3 [ %i_10, %.preheader11.loopexit ], [ 0, %.preheader11.preheader ]"   --->   Operation 231 'phi' 'i5_0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 232 [1/1] (1.13ns)   --->   "%icmp_ln95 = icmp eq i3 %i5_0, -4" [AES_encrypt.cpp:95]   --->   Operation 232 'icmp' 'icmp_ln95' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 233 [1/1] (0.00ns)   --->   "%empty_10 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 233 'speclooptripcount' 'empty_10' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 234 [1/1] (1.65ns)   --->   "%i_10 = add i3 %i5_0, 1" [AES_encrypt.cpp:95]   --->   Operation 234 'add' 'i_10' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 235 [1/1] (0.00ns)   --->   "br i1 %icmp_ln95, label %.preheader9.preheader, label %.preheader10.preheader" [AES_encrypt.cpp:95]   --->   Operation 235 'br' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 236 [1/1] (0.00ns)   --->   "%tmp_11 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i5_0, i2 0)" [AES_encrypt.cpp:97]   --->   Operation 236 'bitconcatenate' 'tmp_11' <Predicate = (!icmp_ln95)> <Delay = 0.00>
+ST_16 : Operation 237 [1/1] (0.00ns)   --->   "%zext_ln96 = zext i5 %tmp_11 to i6" [AES_encrypt.cpp:96]   --->   Operation 237 'zext' 'zext_ln96' <Predicate = (!icmp_ln95)> <Delay = 0.00>
+ST_16 : Operation 238 [1/1] (1.76ns)   --->   "br label %.preheader10" [AES_encrypt.cpp:96]   --->   Operation 238 'br' <Predicate = (!icmp_ln95)> <Delay = 1.76>
+ST_16 : Operation 239 [1/1] (1.76ns)   --->   "br label %.preheader9" [AES_encrypt.cpp:100]   --->   Operation 239 'br' <Predicate = (icmp_ln95)> <Delay = 1.76>
+
+State 17 <SV = 5> <Delay = 5.03>
+ST_17 : Operation 240 [1/1] (0.00ns)   --->   "%j6_0 = phi i3 [ %j_3, %7 ], [ 0, %.preheader10.preheader ]"   --->   Operation 240 'phi' 'j6_0' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 241 [1/1] (1.13ns)   --->   "%icmp_ln96 = icmp eq i3 %j6_0, -4" [AES_encrypt.cpp:96]   --->   Operation 241 'icmp' 'icmp_ln96' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 242 [1/1] (0.00ns)   --->   "%empty_11 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 242 'speclooptripcount' 'empty_11' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 243 [1/1] (1.65ns)   --->   "%j_3 = add i3 %j6_0, 1" [AES_encrypt.cpp:96]   --->   Operation 243 'add' 'j_3' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 244 [1/1] (0.00ns)   --->   "br i1 %icmp_ln96, label %.preheader11.loopexit, label %7" [AES_encrypt.cpp:96]   --->   Operation 244 'br' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 245 [1/1] (0.00ns)   --->   "%zext_ln97 = zext i3 %j6_0 to i6" [AES_encrypt.cpp:97]   --->   Operation 245 'zext' 'zext_ln97' <Predicate = (!icmp_ln96)> <Delay = 0.00>
+ST_17 : Operation 246 [1/1] (1.78ns)   --->   "%add_ln97 = add i6 %zext_ln96, %zext_ln97" [AES_encrypt.cpp:97]   --->   Operation 246 'add' 'add_ln97' <Predicate = (!icmp_ln96)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 247 [1/1] (0.00ns)   --->   "%zext_ln97_1 = zext i6 %add_ln97 to i64" [AES_encrypt.cpp:97]   --->   Operation 247 'zext' 'zext_ln97_1' <Predicate = (!icmp_ln96)> <Delay = 0.00>
+ST_17 : Operation 248 [1/1] (0.00ns)   --->   "%StateArray_addr_13 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln97_1" [AES_encrypt.cpp:97]   --->   Operation 248 'getelementptr' 'StateArray_addr_13' <Predicate = (!icmp_ln96)> <Delay = 0.00>
+ST_17 : Operation 249 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_13 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln97_1" [AES_encrypt.cpp:97]   --->   Operation 249 'getelementptr' 'ExpandedKey_addr_13' <Predicate = (!icmp_ln96)> <Delay = 0.00>
+ST_17 : Operation 250 [2/2] (3.25ns)   --->   "%ExpandedKey_load_8 = load i8* %ExpandedKey_addr_13, align 1" [AES_encrypt.cpp:97]   --->   Operation 250 'load' 'ExpandedKey_load_8' <Predicate = (!icmp_ln96)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_17 : Operation 251 [2/2] (2.32ns)   --->   "%StateArray_load = load i8* %StateArray_addr_13, align 1" [AES_encrypt.cpp:97]   --->   Operation 251 'load' 'StateArray_load' <Predicate = (!icmp_ln96)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_17 : Operation 252 [1/1] (0.00ns)   --->   "br label %.preheader11"   --->   Operation 252 'br' <Predicate = (icmp_ln96)> <Delay = 0.00>
+
+State 18 <SV = 6> <Delay = 6.56>
+ST_18 : Operation 253 [1/2] (3.25ns)   --->   "%ExpandedKey_load_8 = load i8* %ExpandedKey_addr_13, align 1" [AES_encrypt.cpp:97]   --->   Operation 253 'load' 'ExpandedKey_load_8' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_18 : Operation 254 [1/2] (2.32ns)   --->   "%StateArray_load = load i8* %StateArray_addr_13, align 1" [AES_encrypt.cpp:97]   --->   Operation 254 'load' 'StateArray_load' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_18 : Operation 255 [1/1] (0.99ns)   --->   "%xor_ln97 = xor i8 %StateArray_load, %ExpandedKey_load_8" [AES_encrypt.cpp:97]   --->   Operation 255 'xor' 'xor_ln97' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 256 [1/1] (2.32ns)   --->   "store i8 %xor_ln97, i8* %StateArray_addr_13, align 1" [AES_encrypt.cpp:97]   --->   Operation 256 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_18 : Operation 257 [1/1] (0.00ns)   --->   "br label %.preheader10" [AES_encrypt.cpp:96]   --->   Operation 257 'br' <Predicate = true> <Delay = 0.00>
+
+State 19 <SV = 5> <Delay = 1.76>
+ST_19 : Operation 258 [1/1] (0.00ns)   --->   "%r_0 = phi i4 [ %r, %13 ], [ 1, %.preheader9.preheader ]"   --->   Operation 258 'phi' 'r_0' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 259 [1/1] (1.30ns)   --->   "%icmp_ln100 = icmp eq i4 %r_0, -5" [AES_encrypt.cpp:100]   --->   Operation 259 'icmp' 'icmp_ln100' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 260 [1/1] (0.00ns)   --->   "%empty_12 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10) nounwind"   --->   Operation 260 'speclooptripcount' 'empty_12' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 261 [1/1] (0.00ns)   --->   "br i1 %icmp_ln100, label %.preheader2.preheader, label %.preheader8.preheader" [AES_encrypt.cpp:100]   --->   Operation 261 'br' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 262 [1/1] (1.76ns)   --->   "br label %.preheader8" [AES_encrypt.cpp:102]   --->   Operation 262 'br' <Predicate = (!icmp_ln100)> <Delay = 1.76>
+ST_19 : Operation 263 [1/1] (1.76ns)   --->   "br label %.preheader2" [AES_encrypt.cpp:161]   --->   Operation 263 'br' <Predicate = (icmp_ln100)> <Delay = 1.76>
+
+State 20 <SV = 6> <Delay = 2.32>
+ST_20 : Operation 264 [1/1] (0.00ns)   --->   "%i7_0 = phi i3 [ %i_12, %.preheader8.loopexit ], [ 0, %.preheader8.preheader ]"   --->   Operation 264 'phi' 'i7_0' <Predicate = true> <Delay = 0.00>
+ST_20 : Operation 265 [1/1] (1.13ns)   --->   "%icmp_ln102 = icmp eq i3 %i7_0, -4" [AES_encrypt.cpp:102]   --->   Operation 265 'icmp' 'icmp_ln102' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 266 [1/1] (0.00ns)   --->   "%empty_13 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 266 'speclooptripcount' 'empty_13' <Predicate = true> <Delay = 0.00>
+ST_20 : Operation 267 [1/1] (1.65ns)   --->   "%i_12 = add i3 %i7_0, 1" [AES_encrypt.cpp:102]   --->   Operation 267 'add' 'i_12' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 268 [1/1] (0.00ns)   --->   "br i1 %icmp_ln102, label %9, label %.preheader7.preheader" [AES_encrypt.cpp:102]   --->   Operation 268 'br' <Predicate = true> <Delay = 0.00>
+ST_20 : Operation 269 [1/1] (0.00ns)   --->   "%tmp_13 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i7_0, i2 0)" [AES_encrypt.cpp:104]   --->   Operation 269 'bitconcatenate' 'tmp_13' <Predicate = (!icmp_ln102)> <Delay = 0.00>
+ST_20 : Operation 270 [1/1] (0.00ns)   --->   "%zext_ln103 = zext i5 %tmp_13 to i6" [AES_encrypt.cpp:103]   --->   Operation 270 'zext' 'zext_ln103' <Predicate = (!icmp_ln102)> <Delay = 0.00>
+ST_20 : Operation 271 [1/1] (1.76ns)   --->   "br label %.preheader7" [AES_encrypt.cpp:103]   --->   Operation 271 'br' <Predicate = (!icmp_ln102)> <Delay = 1.76>
+ST_20 : Operation 272 [2/2] (2.32ns)   --->   "%x = load i8* %StateArray_addr, align 4" [AES_encrypt.cpp:109]   --->   Operation 272 'load' 'x' <Predicate = (icmp_ln102)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_20 : Operation 273 [2/2] (2.32ns)   --->   "%StateArray_load_2 = load i8* %StateArray_addr_1, align 1" [AES_encrypt.cpp:110]   --->   Operation 273 'load' 'StateArray_load_2' <Predicate = (icmp_ln102)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 21 <SV = 7> <Delay = 4.10>
+ST_21 : Operation 274 [1/1] (0.00ns)   --->   "%j8_0 = phi i3 [ %j_5, %8 ], [ 0, %.preheader7.preheader ]"   --->   Operation 274 'phi' 'j8_0' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 275 [1/1] (1.13ns)   --->   "%icmp_ln103 = icmp eq i3 %j8_0, -4" [AES_encrypt.cpp:103]   --->   Operation 275 'icmp' 'icmp_ln103' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 276 [1/1] (0.00ns)   --->   "%empty_14 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 276 'speclooptripcount' 'empty_14' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 277 [1/1] (1.65ns)   --->   "%j_5 = add i3 %j8_0, 1" [AES_encrypt.cpp:103]   --->   Operation 277 'add' 'j_5' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 278 [1/1] (0.00ns)   --->   "br i1 %icmp_ln103, label %.preheader8.loopexit, label %8" [AES_encrypt.cpp:103]   --->   Operation 278 'br' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 279 [1/1] (0.00ns)   --->   "%zext_ln104_1 = zext i3 %j8_0 to i6" [AES_encrypt.cpp:104]   --->   Operation 279 'zext' 'zext_ln104_1' <Predicate = (!icmp_ln103)> <Delay = 0.00>
+ST_21 : Operation 280 [1/1] (1.78ns)   --->   "%add_ln104 = add i6 %zext_ln103, %zext_ln104_1" [AES_encrypt.cpp:104]   --->   Operation 280 'add' 'add_ln104' <Predicate = (!icmp_ln103)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 281 [1/1] (0.00ns)   --->   "%zext_ln104_2 = zext i6 %add_ln104 to i64" [AES_encrypt.cpp:104]   --->   Operation 281 'zext' 'zext_ln104_2' <Predicate = (!icmp_ln103)> <Delay = 0.00>
+ST_21 : Operation 282 [1/1] (0.00ns)   --->   "%StateArray_addr_15 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln104_2" [AES_encrypt.cpp:104]   --->   Operation 282 'getelementptr' 'StateArray_addr_15' <Predicate = (!icmp_ln103)> <Delay = 0.00>
+ST_21 : Operation 283 [2/2] (2.32ns)   --->   "%StateArray_load_14 = load i8* %StateArray_addr_15, align 1" [AES_encrypt.cpp:104]   --->   Operation 283 'load' 'StateArray_load_14' <Predicate = (!icmp_ln103)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_21 : Operation 284 [1/1] (0.00ns)   --->   "br label %.preheader8"   --->   Operation 284 'br' <Predicate = (icmp_ln103)> <Delay = 0.00>
+
+State 22 <SV = 8> <Delay = 5.57>
+ST_22 : Operation 285 [1/2] (2.32ns)   --->   "%StateArray_load_14 = load i8* %StateArray_addr_15, align 1" [AES_encrypt.cpp:104]   --->   Operation 285 'load' 'StateArray_load_14' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_22 : Operation 286 [1/1] (0.00ns)   --->   "%zext_ln104 = zext i8 %StateArray_load_14 to i64" [AES_encrypt.cpp:104]   --->   Operation 286 'zext' 'zext_ln104' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 287 [1/1] (0.00ns)   --->   "%SBox_addr_4 = getelementptr inbounds [256 x i8]* @SBox, i64 0, i64 %zext_ln104" [AES_encrypt.cpp:104]   --->   Operation 287 'getelementptr' 'SBox_addr_4' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 288 [2/2] (3.25ns)   --->   "%SBox_load_4 = load i8* %SBox_addr_4, align 1" [AES_encrypt.cpp:104]   --->   Operation 288 'load' 'SBox_load_4' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+
+State 23 <SV = 9> <Delay = 5.57>
+ST_23 : Operation 289 [1/2] (3.25ns)   --->   "%SBox_load_4 = load i8* %SBox_addr_4, align 1" [AES_encrypt.cpp:104]   --->   Operation 289 'load' 'SBox_load_4' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 256> <ROM>
+ST_23 : Operation 290 [1/1] (2.32ns)   --->   "store i8 %SBox_load_4, i8* %StateArray_addr_15, align 1" [AES_encrypt.cpp:104]   --->   Operation 290 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_23 : Operation 291 [1/1] (0.00ns)   --->   "br label %.preheader7" [AES_encrypt.cpp:103]   --->   Operation 291 'br' <Predicate = true> <Delay = 0.00>
+
+State 24 <SV = 7> <Delay = 2.32>
+ST_24 : Operation 292 [1/2] (2.32ns)   --->   "%x = load i8* %StateArray_addr, align 4" [AES_encrypt.cpp:109]   --->   Operation 292 'load' 'x' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_24 : Operation 293 [1/2] (2.32ns)   --->   "%StateArray_load_2 = load i8* %StateArray_addr_1, align 1" [AES_encrypt.cpp:110]   --->   Operation 293 'load' 'StateArray_load_2' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_24 : Operation 294 [2/2] (2.32ns)   --->   "%StateArray_load_3 = load i8* %StateArray_addr_2, align 2" [AES_encrypt.cpp:111]   --->   Operation 294 'load' 'StateArray_load_3' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_24 : Operation 295 [2/2] (2.32ns)   --->   "%StateArray_load_4 = load i8* %StateArray_addr_3, align 1" [AES_encrypt.cpp:112]   --->   Operation 295 'load' 'StateArray_load_4' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 25 <SV = 8> <Delay = 2.32>
+ST_25 : Operation 296 [1/2] (2.32ns)   --->   "%StateArray_load_3 = load i8* %StateArray_addr_2, align 2" [AES_encrypt.cpp:111]   --->   Operation 296 'load' 'StateArray_load_3' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_25 : Operation 297 [1/2] (2.32ns)   --->   "%StateArray_load_4 = load i8* %StateArray_addr_3, align 1" [AES_encrypt.cpp:112]   --->   Operation 297 'load' 'StateArray_load_4' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_25 : Operation 298 [2/2] (2.32ns)   --->   "%x_1 = load i8* %StateArray_addr_4, align 8" [AES_encrypt.cpp:115]   --->   Operation 298 'load' 'x_1' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_25 : Operation 299 [2/2] (2.32ns)   --->   "%StateArray_load_6 = load i8* %StateArray_addr_5, align 2" [AES_encrypt.cpp:116]   --->   Operation 299 'load' 'StateArray_load_6' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 26 <SV = 9> <Delay = 2.32>
+ST_26 : Operation 300 [1/2] (2.32ns)   --->   "%x_1 = load i8* %StateArray_addr_4, align 8" [AES_encrypt.cpp:115]   --->   Operation 300 'load' 'x_1' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_26 : Operation 301 [1/2] (2.32ns)   --->   "%StateArray_load_6 = load i8* %StateArray_addr_5, align 2" [AES_encrypt.cpp:116]   --->   Operation 301 'load' 'StateArray_load_6' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_26 : Operation 302 [2/2] (2.32ns)   --->   "%x_2 = load i8* %StateArray_addr_6, align 1" [AES_encrypt.cpp:118]   --->   Operation 302 'load' 'x_2' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_26 : Operation 303 [2/2] (2.32ns)   --->   "%StateArray_load_8 = load i8* %StateArray_addr_7, align 1" [AES_encrypt.cpp:119]   --->   Operation 303 'load' 'StateArray_load_8' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 27 <SV = 10> <Delay = 2.32>
+ST_27 : Operation 304 [1/2] (2.32ns)   --->   "%x_2 = load i8* %StateArray_addr_6, align 1" [AES_encrypt.cpp:118]   --->   Operation 304 'load' 'x_2' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_27 : Operation 305 [1/2] (2.32ns)   --->   "%StateArray_load_8 = load i8* %StateArray_addr_7, align 1" [AES_encrypt.cpp:119]   --->   Operation 305 'load' 'StateArray_load_8' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_27 : Operation 306 [2/2] (2.32ns)   --->   "%x_3 = load i8* %StateArray_addr_8, align 1" [AES_encrypt.cpp:122]   --->   Operation 306 'load' 'x_3' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_27 : Operation 307 [2/2] (2.32ns)   --->   "%StateArray_load_10 = load i8* %StateArray_addr_9, align 2" [AES_encrypt.cpp:123]   --->   Operation 307 'load' 'StateArray_load_10' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 28 <SV = 11> <Delay = 2.32>
+ST_28 : Operation 308 [1/2] (2.32ns)   --->   "%x_3 = load i8* %StateArray_addr_8, align 1" [AES_encrypt.cpp:122]   --->   Operation 308 'load' 'x_3' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_28 : Operation 309 [1/2] (2.32ns)   --->   "%StateArray_load_10 = load i8* %StateArray_addr_9, align 2" [AES_encrypt.cpp:123]   --->   Operation 309 'load' 'StateArray_load_10' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_28 : Operation 310 [2/2] (2.32ns)   --->   "%StateArray_load_11 = load i8* %StateArray_addr_10, align 1" [AES_encrypt.cpp:124]   --->   Operation 310 'load' 'StateArray_load_11' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_28 : Operation 311 [2/2] (2.32ns)   --->   "%StateArray_load_12 = load i8* %StateArray_addr_11, align 4" [AES_encrypt.cpp:125]   --->   Operation 311 'load' 'StateArray_load_12' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 29 <SV = 12> <Delay = 2.32>
+ST_29 : Operation 312 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_2, i8* %StateArray_addr, align 4" [AES_encrypt.cpp:110]   --->   Operation 312 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_29 : Operation 313 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_3, i8* %StateArray_addr_1, align 1" [AES_encrypt.cpp:111]   --->   Operation 313 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_29 : Operation 314 [1/2] (2.32ns)   --->   "%StateArray_load_11 = load i8* %StateArray_addr_10, align 1" [AES_encrypt.cpp:124]   --->   Operation 314 'load' 'StateArray_load_11' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_29 : Operation 315 [1/2] (2.32ns)   --->   "%StateArray_load_12 = load i8* %StateArray_addr_11, align 4" [AES_encrypt.cpp:125]   --->   Operation 315 'load' 'StateArray_load_12' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 30 <SV = 13> <Delay = 2.32>
+ST_30 : Operation 316 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_4, i8* %StateArray_addr_2, align 2" [AES_encrypt.cpp:112]   --->   Operation 316 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_30 : Operation 317 [1/1] (2.32ns)   --->   "store i8 %x, i8* %StateArray_addr_3, align 1" [AES_encrypt.cpp:113]   --->   Operation 317 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 31 <SV = 14> <Delay = 2.32>
+ST_31 : Operation 318 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_6, i8* %StateArray_addr_4, align 8" [AES_encrypt.cpp:116]   --->   Operation 318 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_31 : Operation 319 [1/1] (2.32ns)   --->   "store i8 %x_1, i8* %StateArray_addr_5, align 2" [AES_encrypt.cpp:117]   --->   Operation 319 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 32 <SV = 15> <Delay = 2.32>
+ST_32 : Operation 320 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_8, i8* %StateArray_addr_6, align 1" [AES_encrypt.cpp:119]   --->   Operation 320 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_32 : Operation 321 [1/1] (2.32ns)   --->   "store i8 %x_2, i8* %StateArray_addr_7, align 1" [AES_encrypt.cpp:120]   --->   Operation 321 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 33 <SV = 16> <Delay = 2.32>
+ST_33 : Operation 322 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_10, i8* %StateArray_addr_8, align 1" [AES_encrypt.cpp:123]   --->   Operation 322 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_33 : Operation 323 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_11, i8* %StateArray_addr_9, align 2" [AES_encrypt.cpp:124]   --->   Operation 323 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+
+State 34 <SV = 17> <Delay = 2.32>
+ST_34 : Operation 324 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_12, i8* %StateArray_addr_10, align 1" [AES_encrypt.cpp:125]   --->   Operation 324 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_34 : Operation 325 [1/1] (2.32ns)   --->   "store i8 %x_3, i8* %StateArray_addr_11, align 4" [AES_encrypt.cpp:126]   --->   Operation 325 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_34 : Operation 326 [1/1] (1.30ns)   --->   "%icmp_ln128 = icmp eq i4 %r_0, -6" [AES_encrypt.cpp:128]   --->   Operation 326 'icmp' 'icmp_ln128' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 327 [1/1] (0.00ns)   --->   "br i1 %icmp_ln128, label %.loopexit, label %.preheader6.preheader" [AES_encrypt.cpp:128]   --->   Operation 327 'br' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 328 [1/1] (1.76ns)   --->   "br label %.preheader6" [AES_encrypt.cpp:132]   --->   Operation 328 'br' <Predicate = (!icmp_ln128)> <Delay = 1.76>
+
+State 35 <SV = 18> <Delay = 3.28>
+ST_35 : Operation 329 [1/1] (0.00ns)   --->   "%i9_0 = phi i3 [ %i_13, %10 ], [ 0, %.preheader6.preheader ]"   --->   Operation 329 'phi' 'i9_0' <Predicate = true> <Delay = 0.00>
+ST_35 : Operation 330 [1/1] (1.13ns)   --->   "%icmp_ln132 = icmp eq i3 %i9_0, -4" [AES_encrypt.cpp:132]   --->   Operation 330 'icmp' 'icmp_ln132' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 331 [1/1] (0.00ns)   --->   "%empty_15 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 331 'speclooptripcount' 'empty_15' <Predicate = true> <Delay = 0.00>
+ST_35 : Operation 332 [1/1] (1.65ns)   --->   "%i_13 = add i3 %i9_0, 1" [AES_encrypt.cpp:132]   --->   Operation 332 'add' 'i_13' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 333 [1/1] (0.00ns)   --->   "br i1 %icmp_ln132, label %.preheader5.preheader, label %10" [AES_encrypt.cpp:132]   --->   Operation 333 'br' <Predicate = true> <Delay = 0.00>
+ST_35 : Operation 334 [1/1] (0.00ns)   --->   "%zext_ln133 = zext i3 %i9_0 to i64" [AES_encrypt.cpp:133]   --->   Operation 334 'zext' 'zext_ln133' <Predicate = (!icmp_ln132)> <Delay = 0.00>
+ST_35 : Operation 335 [1/1] (0.00ns)   --->   "%StateArray_addr_16 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln133" [AES_encrypt.cpp:133]   --->   Operation 335 'getelementptr' 'StateArray_addr_16' <Predicate = (!icmp_ln132)> <Delay = 0.00>
+ST_35 : Operation 336 [1/1] (0.96ns)   --->   "%xor_ln133_6 = xor i3 %i9_0, -4" [AES_encrypt.cpp:133]   --->   Operation 336 'xor' 'xor_ln133_6' <Predicate = (!icmp_ln132)> <Delay = 0.96> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 337 [1/1] (0.00ns)   --->   "%zext_ln133_1 = zext i3 %xor_ln133_6 to i64" [AES_encrypt.cpp:133]   --->   Operation 337 'zext' 'zext_ln133_1' <Predicate = (!icmp_ln132)> <Delay = 0.00>
+ST_35 : Operation 338 [1/1] (0.00ns)   --->   "%StateArray_addr_17 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln133_1" [AES_encrypt.cpp:133]   --->   Operation 338 'getelementptr' 'StateArray_addr_17' <Predicate = (!icmp_ln132)> <Delay = 0.00>
+ST_35 : Operation 339 [2/2] (2.32ns)   --->   "%StateArray_load_15 = load i8* %StateArray_addr_16, align 1" [AES_encrypt.cpp:133]   --->   Operation 339 'load' 'StateArray_load_15' <Predicate = (!icmp_ln132)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_35 : Operation 340 [2/2] (2.32ns)   --->   "%StateArray_load_16 = load i8* %StateArray_addr_17, align 1" [AES_encrypt.cpp:133]   --->   Operation 340 'load' 'StateArray_load_16' <Predicate = (!icmp_ln132)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_35 : Operation 341 [1/1] (1.76ns)   --->   "br label %.preheader5" [AES_encrypt.cpp:148]   --->   Operation 341 'br' <Predicate = (icmp_ln132)> <Delay = 1.76>
+
+State 36 <SV = 19> <Delay = 3.51>
+ST_36 : Operation 342 [1/1] (0.00ns)   --->   "%tmp_14 = call i64 @_ssdm_op_BitConcatenate.i64.i61.i3(i61 1, i3 %i9_0)" [AES_encrypt.cpp:133]   --->   Operation 342 'bitconcatenate' 'tmp_14' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 343 [1/1] (0.00ns)   --->   "%StateArray_addr_18 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %tmp_14" [AES_encrypt.cpp:133]   --->   Operation 343 'getelementptr' 'StateArray_addr_18' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 344 [1/1] (0.00ns)   --->   "%sext_ln133 = sext i3 %xor_ln133_6 to i4" [AES_encrypt.cpp:133]   --->   Operation 344 'sext' 'sext_ln133' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 345 [1/1] (0.00ns)   --->   "%zext_ln133_2 = zext i4 %sext_ln133 to i64" [AES_encrypt.cpp:133]   --->   Operation 345 'zext' 'zext_ln133_2' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 346 [1/1] (0.00ns)   --->   "%StateArray_addr_19 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln133_2" [AES_encrypt.cpp:133]   --->   Operation 346 'getelementptr' 'StateArray_addr_19' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 347 [1/2] (2.32ns)   --->   "%StateArray_load_15 = load i8* %StateArray_addr_16, align 1" [AES_encrypt.cpp:133]   --->   Operation 347 'load' 'StateArray_load_15' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_36 : Operation 348 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_2)   --->   "%shl_ln133 = shl i8 %StateArray_load_15, 1" [AES_encrypt.cpp:133]   --->   Operation 348 'shl' 'shl_ln133' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 349 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_2)   --->   "%tmp_15 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %StateArray_load_15, i32 7)" [AES_encrypt.cpp:133]   --->   Operation 349 'bitselect' 'tmp_15' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 350 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_2)   --->   "%select_ln133 = select i1 %tmp_15, i8 27, i8 0" [AES_encrypt.cpp:133]   --->   Operation 350 'select' 'select_ln133' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 351 [1/2] (2.32ns)   --->   "%StateArray_load_16 = load i8* %StateArray_addr_17, align 1" [AES_encrypt.cpp:133]   --->   Operation 351 'load' 'StateArray_load_16' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_36 : Operation 352 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_3)   --->   "%shl_ln133_1 = shl i8 %StateArray_load_16, 1" [AES_encrypt.cpp:133]   --->   Operation 352 'shl' 'shl_ln133_1' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 353 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_3)   --->   "%tmp_16 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %StateArray_load_16, i32 7)" [AES_encrypt.cpp:133]   --->   Operation 353 'bitselect' 'tmp_16' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 354 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_3)   --->   "%select_ln133_1 = select i1 %tmp_16, i8 27, i8 0" [AES_encrypt.cpp:133]   --->   Operation 354 'select' 'select_ln133_1' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 355 [2/2] (2.32ns)   --->   "%StateArray_load_17 = load i8* %StateArray_addr_18, align 1" [AES_encrypt.cpp:133]   --->   Operation 355 'load' 'StateArray_load_17' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_36 : Operation 356 [2/2] (2.32ns)   --->   "%StateArray_load_18 = load i8* %StateArray_addr_19, align 1" [AES_encrypt.cpp:133]   --->   Operation 356 'load' 'StateArray_load_18' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_36 : Operation 357 [1/1] (1.18ns) (out node of the LUT)   --->   "%xor_ln133_2 = xor i8 %select_ln133, %shl_ln133" [AES_encrypt.cpp:133]   --->   Operation 357 'xor' 'xor_ln133_2' <Predicate = true> <Delay = 1.18> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 358 [1/1] (1.18ns) (out node of the LUT)   --->   "%xor_ln133_3 = xor i8 %shl_ln133_1, %select_ln133_1" [AES_encrypt.cpp:133]   --->   Operation 358 'xor' 'xor_ln133_3' <Predicate = true> <Delay = 1.18> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+
+State 37 <SV = 20> <Delay = 6.82>
+ST_37 : Operation 359 [1/1] (0.00ns)   --->   "%StateArrayTmp_addr = getelementptr [16 x i8]* %StateArrayTmp, i64 0, i64 %zext_ln133" [AES_encrypt.cpp:133]   --->   Operation 359 'getelementptr' 'StateArrayTmp_addr' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 360 [1/1] (0.00ns)   --->   "%StateArrayTmp_addr_1 = getelementptr [16 x i8]* %StateArrayTmp, i64 0, i64 %zext_ln133_1" [AES_encrypt.cpp:136]   --->   Operation 360 'getelementptr' 'StateArrayTmp_addr_1' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 361 [1/2] (2.32ns)   --->   "%StateArray_load_17 = load i8* %StateArray_addr_18, align 1" [AES_encrypt.cpp:133]   --->   Operation 361 'load' 'StateArray_load_17' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_37 : Operation 362 [1/2] (2.32ns)   --->   "%StateArray_load_18 = load i8* %StateArray_addr_19, align 1" [AES_encrypt.cpp:133]   --->   Operation 362 'load' 'StateArray_load_18' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_37 : Operation 363 [1/1] (0.99ns)   --->   "%xor_ln133 = xor i8 %StateArray_load_17, %StateArray_load_18" [AES_encrypt.cpp:133]   --->   Operation 363 'xor' 'xor_ln133' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 364 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_5)   --->   "%xor_ln133_1 = xor i8 %xor_ln133, %StateArray_load_16" [AES_encrypt.cpp:133]   --->   Operation 364 'xor' 'xor_ln133_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 365 [1/1] (0.00ns) (grouped into LUT with out node xor_ln133_5)   --->   "%xor_ln133_4 = xor i8 %xor_ln133_3, %xor_ln133_2" [AES_encrypt.cpp:133]   --->   Operation 365 'xor' 'xor_ln133_4' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 366 [1/1] (0.99ns) (out node of the LUT)   --->   "%xor_ln133_5 = xor i8 %xor_ln133_4, %xor_ln133_1" [AES_encrypt.cpp:133]   --->   Operation 366 'xor' 'xor_ln133_5' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 367 [1/1] (2.32ns)   --->   "store i8 %xor_ln133_5, i8* %StateArrayTmp_addr, align 1" [AES_encrypt.cpp:133]   --->   Operation 367 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_37 : Operation 368 [1/1] (0.00ns) (grouped into LUT with out node xor_ln136_1)   --->   "%shl_ln136 = shl i8 %StateArray_load_17, 1" [AES_encrypt.cpp:136]   --->   Operation 368 'shl' 'shl_ln136' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 369 [1/1] (0.00ns) (grouped into LUT with out node xor_ln136_1)   --->   "%tmp_17 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %StateArray_load_17, i32 7)" [AES_encrypt.cpp:136]   --->   Operation 369 'bitselect' 'tmp_17' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 370 [1/1] (0.00ns) (grouped into LUT with out node xor_ln136_1)   --->   "%select_ln136 = select i1 %tmp_17, i8 27, i8 0" [AES_encrypt.cpp:136]   --->   Operation 370 'select' 'select_ln136' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_37 : Operation 371 [1/1] (0.00ns) (grouped into LUT with out node xor_ln136_3)   --->   "%xor_ln136 = xor i8 %xor_ln133, %StateArray_load_15" [AES_encrypt.cpp:136]   --->   Operation 371 'xor' 'xor_ln136' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 372 [1/1] (1.18ns) (out node of the LUT)   --->   "%xor_ln136_1 = xor i8 %shl_ln136, %select_ln136" [AES_encrypt.cpp:136]   --->   Operation 372 'xor' 'xor_ln136_1' <Predicate = true> <Delay = 1.18> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 373 [1/1] (0.00ns) (grouped into LUT with out node xor_ln136_3)   --->   "%xor_ln136_2 = xor i8 %xor_ln136_1, %xor_ln133_3" [AES_encrypt.cpp:136]   --->   Operation 373 'xor' 'xor_ln136_2' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 374 [1/1] (0.99ns) (out node of the LUT)   --->   "%xor_ln136_3 = xor i8 %xor_ln136_2, %xor_ln136" [AES_encrypt.cpp:136]   --->   Operation 374 'xor' 'xor_ln136_3' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 375 [1/1] (2.32ns)   --->   "store i8 %xor_ln136_3, i8* %StateArrayTmp_addr_1, align 1" [AES_encrypt.cpp:136]   --->   Operation 375 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_37 : Operation 376 [1/1] (0.00ns) (grouped into LUT with out node xor_ln139_2)   --->   "%shl_ln139 = shl i8 %StateArray_load_18, 1" [AES_encrypt.cpp:139]   --->   Operation 376 'shl' 'shl_ln139' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 377 [1/1] (0.00ns) (grouped into LUT with out node xor_ln139_2)   --->   "%tmp_18 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %StateArray_load_18, i32 7)" [AES_encrypt.cpp:139]   --->   Operation 377 'bitselect' 'tmp_18' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 378 [1/1] (0.00ns) (grouped into LUT with out node xor_ln139_2)   --->   "%select_ln139 = select i1 %tmp_18, i8 27, i8 0" [AES_encrypt.cpp:139]   --->   Operation 378 'select' 'select_ln139' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_37 : Operation 379 [1/1] (0.00ns) (grouped into LUT with out node xor_ln139_4)   --->   "%xor_ln139 = xor i8 %StateArray_load_15, %StateArray_load_18" [AES_encrypt.cpp:139]   --->   Operation 379 'xor' 'xor_ln139' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 380 [1/1] (0.00ns) (grouped into LUT with out node xor_ln139_4)   --->   "%xor_ln139_1 = xor i8 %xor_ln139, %StateArray_load_16" [AES_encrypt.cpp:139]   --->   Operation 380 'xor' 'xor_ln139_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 381 [1/1] (1.18ns) (out node of the LUT)   --->   "%xor_ln139_2 = xor i8 %shl_ln139, %select_ln139" [AES_encrypt.cpp:139]   --->   Operation 381 'xor' 'xor_ln139_2' <Predicate = true> <Delay = 1.18> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 382 [1/1] (0.00ns) (grouped into LUT with out node xor_ln139_4)   --->   "%xor_ln139_3 = xor i8 %xor_ln139_2, %xor_ln136_1" [AES_encrypt.cpp:139]   --->   Operation 382 'xor' 'xor_ln139_3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 383 [1/1] (0.99ns) (out node of the LUT)   --->   "%xor_ln139_4 = xor i8 %xor_ln139_3, %xor_ln139_1" [AES_encrypt.cpp:139]   --->   Operation 383 'xor' 'xor_ln139_4' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 384 [1/1] (0.00ns) (grouped into LUT with out node xor_ln142_3)   --->   "%xor_ln142 = xor i8 %StateArray_load_16, %StateArray_load_17" [AES_encrypt.cpp:142]   --->   Operation 384 'xor' 'xor_ln142' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 385 [1/1] (0.00ns) (grouped into LUT with out node xor_ln142_3)   --->   "%xor_ln142_1 = xor i8 %xor_ln142, %StateArray_load_15" [AES_encrypt.cpp:142]   --->   Operation 385 'xor' 'xor_ln142_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 386 [1/1] (0.00ns) (grouped into LUT with out node xor_ln142_3)   --->   "%xor_ln142_2 = xor i8 %xor_ln139_2, %xor_ln133_2" [AES_encrypt.cpp:142]   --->   Operation 386 'xor' 'xor_ln142_2' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 387 [1/1] (0.99ns) (out node of the LUT)   --->   "%xor_ln142_3 = xor i8 %xor_ln142_2, %xor_ln142_1" [AES_encrypt.cpp:142]   --->   Operation 387 'xor' 'xor_ln142_3' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+
+State 38 <SV = 21> <Delay = 2.32>
+ST_38 : Operation 388 [1/1] (0.00ns)   --->   "%StateArrayTmp_addr_2 = getelementptr [16 x i8]* %StateArrayTmp, i64 0, i64 %tmp_14" [AES_encrypt.cpp:139]   --->   Operation 388 'getelementptr' 'StateArrayTmp_addr_2' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 389 [1/1] (0.00ns)   --->   "%StateArrayTmp_addr_3 = getelementptr [16 x i8]* %StateArrayTmp, i64 0, i64 %zext_ln133_2" [AES_encrypt.cpp:142]   --->   Operation 389 'getelementptr' 'StateArrayTmp_addr_3' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 390 [1/1] (2.32ns)   --->   "store i8 %xor_ln139_4, i8* %StateArrayTmp_addr_2, align 1" [AES_encrypt.cpp:139]   --->   Operation 390 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_38 : Operation 391 [1/1] (2.32ns)   --->   "store i8 %xor_ln142_3, i8* %StateArrayTmp_addr_3, align 1" [AES_encrypt.cpp:142]   --->   Operation 391 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_38 : Operation 392 [1/1] (0.00ns)   --->   "br label %.preheader6" [AES_encrypt.cpp:132]   --->   Operation 392 'br' <Predicate = true> <Delay = 0.00>
+
+State 39 <SV = 19> <Delay = 1.76>
+ST_39 : Operation 393 [1/1] (0.00ns)   --->   "%i10_0 = phi i3 [ %i_14, %.preheader5.loopexit ], [ 0, %.preheader5.preheader ]"   --->   Operation 393 'phi' 'i10_0' <Predicate = (!icmp_ln128)> <Delay = 0.00>
+ST_39 : Operation 394 [1/1] (1.13ns)   --->   "%icmp_ln148 = icmp eq i3 %i10_0, -4" [AES_encrypt.cpp:148]   --->   Operation 394 'icmp' 'icmp_ln148' <Predicate = (!icmp_ln128)> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 395 [1/1] (0.00ns)   --->   "%empty_16 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 395 'speclooptripcount' 'empty_16' <Predicate = (!icmp_ln128)> <Delay = 0.00>
+ST_39 : Operation 396 [1/1] (1.65ns)   --->   "%i_14 = add i3 %i10_0, 1" [AES_encrypt.cpp:148]   --->   Operation 396 'add' 'i_14' <Predicate = (!icmp_ln128)> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 397 [1/1] (0.00ns)   --->   "br i1 %icmp_ln148, label %.loopexit.loopexit, label %.preheader4.preheader" [AES_encrypt.cpp:148]   --->   Operation 397 'br' <Predicate = (!icmp_ln128)> <Delay = 0.00>
+ST_39 : Operation 398 [1/1] (0.00ns)   --->   "%tmp_19 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i10_0, i2 0)" [AES_encrypt.cpp:150]   --->   Operation 398 'bitconcatenate' 'tmp_19' <Predicate = (!icmp_ln128 & !icmp_ln148)> <Delay = 0.00>
+ST_39 : Operation 399 [1/1] (0.00ns)   --->   "%zext_ln149 = zext i5 %tmp_19 to i6" [AES_encrypt.cpp:149]   --->   Operation 399 'zext' 'zext_ln149' <Predicate = (!icmp_ln128 & !icmp_ln148)> <Delay = 0.00>
+ST_39 : Operation 400 [1/1] (1.76ns)   --->   "br label %.preheader4" [AES_encrypt.cpp:149]   --->   Operation 400 'br' <Predicate = (!icmp_ln128 & !icmp_ln148)> <Delay = 1.76>
+ST_39 : Operation 401 [1/1] (0.00ns)   --->   "br label %.loopexit"   --->   Operation 401 'br' <Predicate = (!icmp_ln128 & icmp_ln148)> <Delay = 0.00>
+ST_39 : Operation 402 [1/1] (0.00ns)   --->   "%tmp_20 = call i6 @_ssdm_op_BitConcatenate.i6.i4.i2(i4 %r_0, i2 0)" [AES_encrypt.cpp:158]   --->   Operation 402 'bitconcatenate' 'tmp_20' <Predicate = (icmp_ln148) | (icmp_ln128)> <Delay = 0.00>
+ST_39 : Operation 403 [1/1] (0.00ns)   --->   "%zext_ln156 = zext i6 %tmp_20 to i7" [AES_encrypt.cpp:156]   --->   Operation 403 'zext' 'zext_ln156' <Predicate = (icmp_ln148) | (icmp_ln128)> <Delay = 0.00>
+ST_39 : Operation 404 [1/1] (1.76ns)   --->   "br label %.loopexit8" [AES_encrypt.cpp:156]   --->   Operation 404 'br' <Predicate = (icmp_ln148) | (icmp_ln128)> <Delay = 1.76>
+
+State 40 <SV = 20> <Delay = 4.10>
+ST_40 : Operation 405 [1/1] (0.00ns)   --->   "%j11_0 = phi i3 [ %j_6, %11 ], [ 0, %.preheader4.preheader ]"   --->   Operation 405 'phi' 'j11_0' <Predicate = true> <Delay = 0.00>
+ST_40 : Operation 406 [1/1] (1.13ns)   --->   "%icmp_ln149 = icmp eq i3 %j11_0, -4" [AES_encrypt.cpp:149]   --->   Operation 406 'icmp' 'icmp_ln149' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_40 : Operation 407 [1/1] (0.00ns)   --->   "%empty_17 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 407 'speclooptripcount' 'empty_17' <Predicate = true> <Delay = 0.00>
+ST_40 : Operation 408 [1/1] (1.65ns)   --->   "%j_6 = add i3 %j11_0, 1" [AES_encrypt.cpp:149]   --->   Operation 408 'add' 'j_6' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_40 : Operation 409 [1/1] (0.00ns)   --->   "br i1 %icmp_ln149, label %.preheader5.loopexit, label %11" [AES_encrypt.cpp:149]   --->   Operation 409 'br' <Predicate = true> <Delay = 0.00>
+ST_40 : Operation 410 [1/1] (0.00ns)   --->   "%zext_ln150 = zext i3 %j11_0 to i6" [AES_encrypt.cpp:150]   --->   Operation 410 'zext' 'zext_ln150' <Predicate = (!icmp_ln149)> <Delay = 0.00>
+ST_40 : Operation 411 [1/1] (1.78ns)   --->   "%add_ln150 = add i6 %zext_ln149, %zext_ln150" [AES_encrypt.cpp:150]   --->   Operation 411 'add' 'add_ln150' <Predicate = (!icmp_ln149)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_40 : Operation 412 [1/1] (0.00ns)   --->   "%zext_ln150_1 = zext i6 %add_ln150 to i64" [AES_encrypt.cpp:150]   --->   Operation 412 'zext' 'zext_ln150_1' <Predicate = (!icmp_ln149)> <Delay = 0.00>
+ST_40 : Operation 413 [1/1] (0.00ns)   --->   "%StateArrayTmp_addr_4 = getelementptr [16 x i8]* %StateArrayTmp, i64 0, i64 %zext_ln150_1" [AES_encrypt.cpp:150]   --->   Operation 413 'getelementptr' 'StateArrayTmp_addr_4' <Predicate = (!icmp_ln149)> <Delay = 0.00>
+ST_40 : Operation 414 [2/2] (2.32ns)   --->   "%StateArrayTmp_load = load i8* %StateArrayTmp_addr_4, align 1" [AES_encrypt.cpp:150]   --->   Operation 414 'load' 'StateArrayTmp_load' <Predicate = (!icmp_ln149)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_40 : Operation 415 [1/1] (0.00ns)   --->   "br label %.preheader5"   --->   Operation 415 'br' <Predicate = (icmp_ln149)> <Delay = 0.00>
+
+State 41 <SV = 21> <Delay = 4.64>
+ST_41 : Operation 416 [1/1] (0.00ns)   --->   "%StateArray_addr_20 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln150_1" [AES_encrypt.cpp:150]   --->   Operation 416 'getelementptr' 'StateArray_addr_20' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 417 [1/2] (2.32ns)   --->   "%StateArrayTmp_load = load i8* %StateArrayTmp_addr_4, align 1" [AES_encrypt.cpp:150]   --->   Operation 417 'load' 'StateArrayTmp_load' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_41 : Operation 418 [1/1] (2.32ns)   --->   "store i8 %StateArrayTmp_load, i8* %StateArray_addr_20, align 1" [AES_encrypt.cpp:150]   --->   Operation 418 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_41 : Operation 419 [1/1] (0.00ns)   --->   "br label %.preheader4" [AES_encrypt.cpp:149]   --->   Operation 419 'br' <Predicate = true> <Delay = 0.00>
+
+State 42 <SV = 20> <Delay = 1.82>
+ST_42 : Operation 420 [1/1] (0.00ns)   --->   "%i12_0 = phi i3 [ 0, %.loopexit ], [ %i_15, %.loopexit8.loopexit ]"   --->   Operation 420 'phi' 'i12_0' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 421 [1/1] (1.13ns)   --->   "%icmp_ln156 = icmp eq i3 %i12_0, -4" [AES_encrypt.cpp:156]   --->   Operation 421 'icmp' 'icmp_ln156' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 422 [1/1] (0.00ns)   --->   "%empty_18 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 422 'speclooptripcount' 'empty_18' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 423 [1/1] (1.65ns)   --->   "%i_15 = add i3 %i12_0, 1" [AES_encrypt.cpp:156]   --->   Operation 423 'add' 'i_15' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 424 [1/1] (0.00ns)   --->   "br i1 %icmp_ln156, label %13, label %.preheader3.preheader" [AES_encrypt.cpp:156]   --->   Operation 424 'br' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 425 [1/1] (0.00ns)   --->   "%zext_ln158 = zext i3 %i12_0 to i7" [AES_encrypt.cpp:158]   --->   Operation 425 'zext' 'zext_ln158' <Predicate = (!icmp_ln156)> <Delay = 0.00>
+ST_42 : Operation 426 [1/1] (0.00ns)   --->   "%tmp_21 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i12_0, i2 0)" [AES_encrypt.cpp:158]   --->   Operation 426 'bitconcatenate' 'tmp_21' <Predicate = (!icmp_ln156)> <Delay = 0.00>
+ST_42 : Operation 427 [1/1] (0.00ns)   --->   "%zext_ln158_1 = zext i5 %tmp_21 to i6" [AES_encrypt.cpp:158]   --->   Operation 427 'zext' 'zext_ln158_1' <Predicate = (!icmp_ln156)> <Delay = 0.00>
+ST_42 : Operation 428 [1/1] (1.82ns)   --->   "%add_ln158 = add i7 %zext_ln158, %zext_ln156" [AES_encrypt.cpp:158]   --->   Operation 428 'add' 'add_ln158' <Predicate = (!icmp_ln156)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 429 [1/1] (0.00ns)   --->   "%tmp_28_cast = call i9 @_ssdm_op_BitConcatenate.i9.i7.i2(i7 %add_ln158, i2 0)" [AES_encrypt.cpp:157]   --->   Operation 429 'bitconcatenate' 'tmp_28_cast' <Predicate = (!icmp_ln156)> <Delay = 0.00>
+ST_42 : Operation 430 [1/1] (1.76ns)   --->   "br label %.preheader3" [AES_encrypt.cpp:157]   --->   Operation 430 'br' <Predicate = (!icmp_ln156)> <Delay = 1.76>
+ST_42 : Operation 431 [1/1] (1.73ns)   --->   "%r = add i4 %r_0, 1" [AES_encrypt.cpp:100]   --->   Operation 431 'add' 'r' <Predicate = (icmp_ln156)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 432 [1/1] (0.00ns)   --->   "br label %.preheader9" [AES_encrypt.cpp:100]   --->   Operation 432 'br' <Predicate = (icmp_ln156)> <Delay = 0.00>
+
+State 43 <SV = 21> <Delay = 5.07>
+ST_43 : Operation 433 [1/1] (0.00ns)   --->   "%j13_0 = phi i3 [ %j_7, %12 ], [ 0, %.preheader3.preheader ]"   --->   Operation 433 'phi' 'j13_0' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 434 [1/1] (1.13ns)   --->   "%icmp_ln157 = icmp eq i3 %j13_0, -4" [AES_encrypt.cpp:157]   --->   Operation 434 'icmp' 'icmp_ln157' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 435 [1/1] (0.00ns)   --->   "%empty_19 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 435 'speclooptripcount' 'empty_19' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 436 [1/1] (1.65ns)   --->   "%j_7 = add i3 %j13_0, 1" [AES_encrypt.cpp:157]   --->   Operation 436 'add' 'j_7' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 437 [1/1] (0.00ns)   --->   "br i1 %icmp_ln157, label %.loopexit8.loopexit, label %12" [AES_encrypt.cpp:157]   --->   Operation 437 'br' <Predicate = true> <Delay = 0.00>
+ST_43 : Operation 438 [1/1] (0.00ns)   --->   "%zext_ln158_2 = zext i3 %j13_0 to i9" [AES_encrypt.cpp:158]   --->   Operation 438 'zext' 'zext_ln158_2' <Predicate = (!icmp_ln157)> <Delay = 0.00>
+ST_43 : Operation 439 [1/1] (0.00ns)   --->   "%zext_ln158_3 = zext i3 %j13_0 to i6" [AES_encrypt.cpp:158]   --->   Operation 439 'zext' 'zext_ln158_3' <Predicate = (!icmp_ln157)> <Delay = 0.00>
+ST_43 : Operation 440 [1/1] (1.78ns)   --->   "%add_ln158_1 = add i6 %zext_ln158_1, %zext_ln158_3" [AES_encrypt.cpp:158]   --->   Operation 440 'add' 'add_ln158_1' <Predicate = (!icmp_ln157)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 441 [1/1] (0.00ns)   --->   "%zext_ln158_4 = zext i6 %add_ln158_1 to i64" [AES_encrypt.cpp:158]   --->   Operation 441 'zext' 'zext_ln158_4' <Predicate = (!icmp_ln157)> <Delay = 0.00>
+ST_43 : Operation 442 [1/1] (0.00ns)   --->   "%StateArray_addr_21 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln158_4" [AES_encrypt.cpp:158]   --->   Operation 442 'getelementptr' 'StateArray_addr_21' <Predicate = (!icmp_ln157)> <Delay = 0.00>
+ST_43 : Operation 443 [1/1] (1.82ns)   --->   "%add_ln158_2 = add i9 %tmp_28_cast, %zext_ln158_2" [AES_encrypt.cpp:158]   --->   Operation 443 'add' 'add_ln158_2' <Predicate = (!icmp_ln157)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 444 [1/1] (0.00ns)   --->   "%zext_ln158_5 = zext i9 %add_ln158_2 to i64" [AES_encrypt.cpp:158]   --->   Operation 444 'zext' 'zext_ln158_5' <Predicate = (!icmp_ln157)> <Delay = 0.00>
+ST_43 : Operation 445 [1/1] (0.00ns)   --->   "%ExpandedKey_addr_14 = getelementptr [176 x i8]* %ExpandedKey, i64 0, i64 %zext_ln158_5" [AES_encrypt.cpp:158]   --->   Operation 445 'getelementptr' 'ExpandedKey_addr_14' <Predicate = (!icmp_ln157)> <Delay = 0.00>
+ST_43 : Operation 446 [2/2] (3.25ns)   --->   "%ExpandedKey_load_9 = load i8* %ExpandedKey_addr_14, align 1" [AES_encrypt.cpp:158]   --->   Operation 446 'load' 'ExpandedKey_load_9' <Predicate = (!icmp_ln157)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_43 : Operation 447 [2/2] (2.32ns)   --->   "%StateArray_load_19 = load i8* %StateArray_addr_21, align 1" [AES_encrypt.cpp:158]   --->   Operation 447 'load' 'StateArray_load_19' <Predicate = (!icmp_ln157)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_43 : Operation 448 [1/1] (0.00ns)   --->   "br label %.loopexit8"   --->   Operation 448 'br' <Predicate = (icmp_ln157)> <Delay = 0.00>
+
+State 44 <SV = 22> <Delay = 6.56>
+ST_44 : Operation 449 [1/2] (3.25ns)   --->   "%ExpandedKey_load_9 = load i8* %ExpandedKey_addr_14, align 1" [AES_encrypt.cpp:158]   --->   Operation 449 'load' 'ExpandedKey_load_9' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_44 : Operation 450 [1/2] (2.32ns)   --->   "%StateArray_load_19 = load i8* %StateArray_addr_21, align 1" [AES_encrypt.cpp:158]   --->   Operation 450 'load' 'StateArray_load_19' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_44 : Operation 451 [1/1] (0.99ns)   --->   "%xor_ln158 = xor i8 %StateArray_load_19, %ExpandedKey_load_9" [AES_encrypt.cpp:158]   --->   Operation 451 'xor' 'xor_ln158' <Predicate = true> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 452 [1/1] (2.32ns)   --->   "store i8 %xor_ln158, i8* %StateArray_addr_21, align 1" [AES_encrypt.cpp:158]   --->   Operation 452 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_44 : Operation 453 [1/1] (0.00ns)   --->   "br label %.preheader3" [AES_encrypt.cpp:157]   --->   Operation 453 'br' <Predicate = true> <Delay = 0.00>
+
+State 45 <SV = 6> <Delay = 1.76>
+ST_45 : Operation 454 [1/1] (0.00ns)   --->   "%i14_0 = phi i3 [ %i_11, %.preheader2.loopexit ], [ 0, %.preheader2.preheader ]"   --->   Operation 454 'phi' 'i14_0' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 455 [1/1] (1.13ns)   --->   "%icmp_ln161 = icmp eq i3 %i14_0, -4" [AES_encrypt.cpp:161]   --->   Operation 455 'icmp' 'icmp_ln161' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 456 [1/1] (0.00ns)   --->   "%empty_20 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 456 'speclooptripcount' 'empty_20' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 457 [1/1] (1.65ns)   --->   "%i_11 = add i3 %i14_0, 1" [AES_encrypt.cpp:161]   --->   Operation 457 'add' 'i_11' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 458 [1/1] (0.00ns)   --->   "br i1 %icmp_ln161, label %15, label %.preheader.preheader" [AES_encrypt.cpp:161]   --->   Operation 458 'br' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 459 [1/1] (0.00ns)   --->   "%tmp_12 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i14_0, i2 0)" [AES_encrypt.cpp:163]   --->   Operation 459 'bitconcatenate' 'tmp_12' <Predicate = (!icmp_ln161)> <Delay = 0.00>
+ST_45 : Operation 460 [1/1] (0.00ns)   --->   "%zext_ln162 = zext i5 %tmp_12 to i6" [AES_encrypt.cpp:162]   --->   Operation 460 'zext' 'zext_ln162' <Predicate = (!icmp_ln161)> <Delay = 0.00>
+ST_45 : Operation 461 [1/1] (1.76ns)   --->   "br label %.preheader" [AES_encrypt.cpp:162]   --->   Operation 461 'br' <Predicate = (!icmp_ln161)> <Delay = 1.76>
+ST_45 : Operation 462 [1/1] (0.00ns)   --->   "ret void" [AES_encrypt.cpp:167]   --->   Operation 462 'ret' <Predicate = (icmp_ln161)> <Delay = 0.00>
+
+State 46 <SV = 7> <Delay = 4.10>
+ST_46 : Operation 463 [1/1] (0.00ns)   --->   "%j15_0 = phi i3 [ %j_4, %14 ], [ 0, %.preheader.preheader ]"   --->   Operation 463 'phi' 'j15_0' <Predicate = true> <Delay = 0.00>
+ST_46 : Operation 464 [1/1] (1.13ns)   --->   "%icmp_ln162 = icmp eq i3 %j15_0, -4" [AES_encrypt.cpp:162]   --->   Operation 464 'icmp' 'icmp_ln162' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_46 : Operation 465 [1/1] (0.00ns)   --->   "%empty_21 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4) nounwind"   --->   Operation 465 'speclooptripcount' 'empty_21' <Predicate = true> <Delay = 0.00>
+ST_46 : Operation 466 [1/1] (1.65ns)   --->   "%j_4 = add i3 %j15_0, 1" [AES_encrypt.cpp:162]   --->   Operation 466 'add' 'j_4' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_46 : Operation 467 [1/1] (0.00ns)   --->   "br i1 %icmp_ln162, label %.preheader2.loopexit, label %14" [AES_encrypt.cpp:162]   --->   Operation 467 'br' <Predicate = true> <Delay = 0.00>
+ST_46 : Operation 468 [1/1] (0.00ns)   --->   "%zext_ln163 = zext i3 %j15_0 to i6" [AES_encrypt.cpp:163]   --->   Operation 468 'zext' 'zext_ln163' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_46 : Operation 469 [1/1] (1.78ns)   --->   "%add_ln163 = add i6 %zext_ln162, %zext_ln163" [AES_encrypt.cpp:163]   --->   Operation 469 'add' 'add_ln163' <Predicate = (!icmp_ln162)> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_46 : Operation 470 [1/1] (0.00ns)   --->   "%zext_ln163_1 = zext i6 %add_ln163 to i64" [AES_encrypt.cpp:163]   --->   Operation 470 'zext' 'zext_ln163_1' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_46 : Operation 471 [1/1] (0.00ns)   --->   "%StateArray_addr_14 = getelementptr [16 x i8]* %StateArray, i64 0, i64 %zext_ln163_1" [AES_encrypt.cpp:163]   --->   Operation 471 'getelementptr' 'StateArray_addr_14' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_46 : Operation 472 [2/2] (2.32ns)   --->   "%StateArray_load_13 = load i8* %StateArray_addr_14, align 1" [AES_encrypt.cpp:163]   --->   Operation 472 'load' 'StateArray_load_13' <Predicate = (!icmp_ln162)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_46 : Operation 473 [1/1] (0.00ns)   --->   "br label %.preheader2"   --->   Operation 473 'br' <Predicate = (icmp_ln162)> <Delay = 0.00>
+
+State 47 <SV = 8> <Delay = 4.64>
+ST_47 : Operation 474 [1/1] (0.00ns)   --->   "%CipherText_addr = getelementptr [16 x i8]* %CipherText, i64 0, i64 %zext_ln163_1" [AES_encrypt.cpp:163]   --->   Operation 474 'getelementptr' 'CipherText_addr' <Predicate = true> <Delay = 0.00>
+ST_47 : Operation 475 [1/2] (2.32ns)   --->   "%StateArray_load_13 = load i8* %StateArray_addr_14, align 1" [AES_encrypt.cpp:163]   --->   Operation 475 'load' 'StateArray_load_13' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 16> <RAM>
+ST_47 : Operation 476 [1/1] (2.32ns)   --->   "store i8 %StateArray_load_13, i8* %CipherText_addr, align 1" [AES_encrypt.cpp:163]   --->   Operation 476 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM_1P">   --->   Core 44 'RAM_1P' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 1> <Width = 8> <Depth = 16> <RAM>
+ST_47 : Operation 477 [1/1] (0.00ns)   --->   "br label %.preheader" [AES_encrypt.cpp:162]   --->   Operation 477 'br' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', AES_encrypt.cpp:51) [31]  (1.77 ns)
+
+ <State 2>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:52) [41]  (1.77 ns)
+
+ <State 3>: 5.03ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:52) [41]  (0 ns)
+	'add' operation ('add_ln53', AES_encrypt.cpp:53) [48]  (1.78 ns)
+	'getelementptr' operation ('Key1_addr', AES_encrypt.cpp:53) [50]  (0 ns)
+	'load' operation ('Key1_load', AES_encrypt.cpp:53) on array 'Key1' [52]  (3.25 ns)
+
+ <State 4>: 6.51ns
+The critical path consists of the following:
+	'load' operation ('Key1_load', AES_encrypt.cpp:53) on array 'Key1' [52]  (3.25 ns)
+	'store' operation ('store_ln53', AES_encrypt.cpp:53) of variable 'Key1_load', AES_encrypt.cpp:53 on array 'ExpandedKey', AES_encrypt.cpp:40 [53]  (3.25 ns)
+
+ <State 5>: 4.99ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', AES_encrypt.cpp:58) [60]  (0 ns)
+	'add' operation ('add_ln60', AES_encrypt.cpp:60) [65]  (1.74 ns)
+	'or' operation ('or_ln60_1', AES_encrypt.cpp:60) [70]  (0 ns)
+	'getelementptr' operation ('ExpandedKey_addr', AES_encrypt.cpp:60) [72]  (0 ns)
+	'load' operation ('ExpandedKey_load', AES_encrypt.cpp:60) on array 'ExpandedKey', AES_encrypt.cpp:40 [84]  (3.25 ns)
+
+ <State 6>: 3.25ns
+The critical path consists of the following:
+	'or' operation ('or_ln62_1', AES_encrypt.cpp:62) [78]  (0 ns)
+	'getelementptr' operation ('ExpandedKey_addr_2', AES_encrypt.cpp:62) [80]  (0 ns)
+	'load' operation ('ExpandedKey_load_2', AES_encrypt.cpp:62) on array 'ExpandedKey', AES_encrypt.cpp:40 [86]  (3.25 ns)
+
+ <State 7>: 6.51ns
+The critical path consists of the following:
+	'load' operation ('ExpandedKey_load_2', AES_encrypt.cpp:62) on array 'ExpandedKey', AES_encrypt.cpp:40 [86]  (3.25 ns)
+	'getelementptr' operation ('SBox_addr_2', AES_encrypt.cpp:68) [95]  (0 ns)
+	'load' operation ('TempKeyCol[2]', AES_encrypt.cpp:68) on array 'SBox' [96]  (3.25 ns)
+
+ <State 8>: 4.24ns
+The critical path consists of the following:
+	'load' operation ('SBox_load', AES_encrypt.cpp:66) on array 'SBox' [90]  (3.25 ns)
+	'xor' operation ('TempKeyCol[0]', AES_encrypt.cpp:72) [102]  (0.99 ns)
+
+ <State 9>: 5.08ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:75) [114]  (0 ns)
+	'add' operation ('add_ln77', AES_encrypt.cpp:77) [124]  (1.82 ns)
+	'getelementptr' operation ('ExpandedKey_addr_6', AES_encrypt.cpp:77) [126]  (0 ns)
+	'load' operation ('ExpandedKey_load_5', AES_encrypt.cpp:77) on array 'ExpandedKey', AES_encrypt.cpp:40 [147]  (3.25 ns)
+
+ <State 10>: 4.24ns
+The critical path consists of the following:
+	'load' operation ('ExpandedKey_load_4', AES_encrypt.cpp:76) on array 'ExpandedKey', AES_encrypt.cpp:40 [145]  (3.25 ns)
+	'xor' operation ('TempKeyCol[0]', AES_encrypt.cpp:76) [146]  (0.99 ns)
+
+ <State 11>: 4.24ns
+The critical path consists of the following:
+	'load' operation ('ExpandedKey_load_6', AES_encrypt.cpp:78) on array 'ExpandedKey', AES_encrypt.cpp:40 [149]  (3.25 ns)
+	'xor' operation ('TempKeyCol[2]', AES_encrypt.cpp:78) [150]  (0.99 ns)
+
+ <State 12>: 3.25ns
+The critical path consists of the following:
+	'or' operation ('or_ln83', AES_encrypt.cpp:83) [139]  (0 ns)
+	'getelementptr' operation ('ExpandedKey_addr_11', AES_encrypt.cpp:83) [141]  (0 ns)
+	'store' operation ('store_ln83', AES_encrypt.cpp:83) of variable 'TempKeyCol[2]', AES_encrypt.cpp:78 on array 'ExpandedKey', AES_encrypt.cpp:40 [155]  (3.25 ns)
+
+ <State 13>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:89) [174]  (1.77 ns)
+
+ <State 14>: 4.1ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:89) [174]  (0 ns)
+	'add' operation ('add_ln90', AES_encrypt.cpp:90) [181]  (1.78 ns)
+	'getelementptr' operation ('PlainText_addr', AES_encrypt.cpp:90) [183]  (0 ns)
+	'load' operation ('PlainText_load', AES_encrypt.cpp:90) on array 'PlainText' [185]  (2.32 ns)
+
+ <State 15>: 4.64ns
+The critical path consists of the following:
+	'load' operation ('PlainText_load', AES_encrypt.cpp:90) on array 'PlainText' [185]  (2.32 ns)
+	'store' operation ('store_ln90', AES_encrypt.cpp:90) of variable 'PlainText_load', AES_encrypt.cpp:90 on array 'StateArray', AES_encrypt.cpp:39 [186]  (2.32 ns)
+
+ <State 16>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:96) [203]  (1.77 ns)
+
+ <State 17>: 5.03ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:96) [203]  (0 ns)
+	'add' operation ('add_ln97', AES_encrypt.cpp:97) [210]  (1.78 ns)
+	'getelementptr' operation ('ExpandedKey_addr_13', AES_encrypt.cpp:97) [213]  (0 ns)
+	'load' operation ('ExpandedKey_load_8', AES_encrypt.cpp:97) on array 'ExpandedKey', AES_encrypt.cpp:40 [214]  (3.25 ns)
+
+ <State 18>: 6.57ns
+The critical path consists of the following:
+	'load' operation ('ExpandedKey_load_8', AES_encrypt.cpp:97) on array 'ExpandedKey', AES_encrypt.cpp:40 [214]  (3.25 ns)
+	'xor' operation ('xor_ln97', AES_encrypt.cpp:97) [216]  (0.99 ns)
+	'store' operation ('store_ln97', AES_encrypt.cpp:97) of variable 'xor_ln97', AES_encrypt.cpp:97 on array 'StateArray', AES_encrypt.cpp:39 [217]  (2.32 ns)
+
+ <State 19>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', AES_encrypt.cpp:102) [231]  (1.77 ns)
+
+ <State 20>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('x', AES_encrypt.cpp:109) on array 'StateArray', AES_encrypt.cpp:39 [260]  (2.32 ns)
+
+ <State 21>: 4.1ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:103) [241]  (0 ns)
+	'add' operation ('add_ln104', AES_encrypt.cpp:104) [248]  (1.78 ns)
+	'getelementptr' operation ('StateArray_addr_15', AES_encrypt.cpp:104) [250]  (0 ns)
+	'load' operation ('StateArray_load_14', AES_encrypt.cpp:104) on array 'StateArray', AES_encrypt.cpp:39 [251]  (2.32 ns)
+
+ <State 22>: 5.58ns
+The critical path consists of the following:
+	'load' operation ('StateArray_load_14', AES_encrypt.cpp:104) on array 'StateArray', AES_encrypt.cpp:39 [251]  (2.32 ns)
+	'getelementptr' operation ('SBox_addr_4', AES_encrypt.cpp:104) [253]  (0 ns)
+	'load' operation ('SBox_load_4', AES_encrypt.cpp:104) on array 'SBox' [254]  (3.25 ns)
+
+ <State 23>: 5.58ns
+The critical path consists of the following:
+	'load' operation ('SBox_load_4', AES_encrypt.cpp:104) on array 'SBox' [254]  (3.25 ns)
+	'store' operation ('store_ln104', AES_encrypt.cpp:104) of variable 'SBox_load_4', AES_encrypt.cpp:104 on array 'StateArray', AES_encrypt.cpp:39 [255]  (2.32 ns)
+
+ <State 24>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('x', AES_encrypt.cpp:109) on array 'StateArray', AES_encrypt.cpp:39 [260]  (2.32 ns)
+
+ <State 25>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('StateArray_load_3', AES_encrypt.cpp:111) on array 'StateArray', AES_encrypt.cpp:39 [263]  (2.32 ns)
+
+ <State 26>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('x', AES_encrypt.cpp:115) on array 'StateArray', AES_encrypt.cpp:39 [268]  (2.32 ns)
+
+ <State 27>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('x', AES_encrypt.cpp:118) on array 'StateArray', AES_encrypt.cpp:39 [272]  (2.32 ns)
+
+ <State 28>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('x', AES_encrypt.cpp:122) on array 'StateArray', AES_encrypt.cpp:39 [276]  (2.32 ns)
+
+ <State 29>: 2.32ns
+The critical path consists of the following:
+	'store' operation ('store_ln110', AES_encrypt.cpp:110) of variable 'StateArray_load_2', AES_encrypt.cpp:110 on array 'StateArray', AES_encrypt.cpp:39 [262]  (2.32 ns)
+
+ <State 30>: 2.32ns
+The critical path consists of the following:
+	'store' operation ('store_ln112', AES_encrypt.cpp:112) of variable 'StateArray_load_4', AES_encrypt.cpp:112 on array 'StateArray', AES_encrypt.cpp:39 [266]  (2.32 ns)
+
+ <State 31>: 2.32ns
+The critical path consists of the following:
+	'store' operation ('store_ln116', AES_encrypt.cpp:116) of variable 'StateArray_load_6', AES_encrypt.cpp:116 on array 'StateArray', AES_encrypt.cpp:39 [270]  (2.32 ns)
+
+ <State 32>: 2.32ns
+The critical path consists of the following:
+	'store' operation ('store_ln119', AES_encrypt.cpp:119) of variable 'StateArray_load_8', AES_encrypt.cpp:119 on array 'StateArray', AES_encrypt.cpp:39 [274]  (2.32 ns)
+
+ <State 33>: 2.32ns
+The critical path consists of the following:
+	'store' operation ('store_ln123', AES_encrypt.cpp:123) of variable 'StateArray_load_10', AES_encrypt.cpp:123 on array 'StateArray', AES_encrypt.cpp:39 [278]  (2.32 ns)
+
+ <State 34>: 2.32ns
+The critical path consists of the following:
+	'store' operation ('store_ln125', AES_encrypt.cpp:125) of variable 'StateArray_load_12', AES_encrypt.cpp:125 on array 'StateArray', AES_encrypt.cpp:39 [282]  (2.32 ns)
+
+ <State 35>: 3.29ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', AES_encrypt.cpp:132) [289]  (0 ns)
+	'xor' operation ('xor_ln133_6', AES_encrypt.cpp:133) [297]  (0.965 ns)
+	'getelementptr' operation ('StateArray_addr_17', AES_encrypt.cpp:133) [299]  (0 ns)
+	'load' operation ('StateArray_load_16', AES_encrypt.cpp:133) on array 'StateArray', AES_encrypt.cpp:39 [313]  (2.32 ns)
+
+ <State 36>: 3.51ns
+The critical path consists of the following:
+	'load' operation ('StateArray_load_15', AES_encrypt.cpp:133) on array 'StateArray', AES_encrypt.cpp:39 [309]  (2.32 ns)
+	'shl' operation ('shl_ln133', AES_encrypt.cpp:133) [310]  (0 ns)
+	'xor' operation ('xor_ln133_2', AES_encrypt.cpp:133) [321]  (1.19 ns)
+
+ <State 37>: 6.82ns
+The critical path consists of the following:
+	'load' operation ('StateArray_load_17', AES_encrypt.cpp:133) on array 'StateArray', AES_encrypt.cpp:39 [317]  (2.32 ns)
+	'shl' operation ('shl_ln136', AES_encrypt.cpp:136) [326]  (0 ns)
+	'xor' operation ('xor_ln136_1', AES_encrypt.cpp:136) [330]  (1.19 ns)
+	'xor' operation ('xor_ln136_2', AES_encrypt.cpp:136) [331]  (0 ns)
+	'xor' operation ('xor_ln136_3', AES_encrypt.cpp:136) [332]  (0.99 ns)
+	'store' operation ('store_ln136', AES_encrypt.cpp:136) of variable 'xor_ln136_3', AES_encrypt.cpp:136 on array 'StateArrayTmp', AES_encrypt.cpp:130 [333]  (2.32 ns)
+
+ <State 38>: 2.32ns
+The critical path consists of the following:
+	'getelementptr' operation ('StateArrayTmp_addr_2', AES_encrypt.cpp:139) [307]  (0 ns)
+	'store' operation ('store_ln139', AES_encrypt.cpp:139) of variable 'xor_ln139_4', AES_encrypt.cpp:139 on array 'StateArrayTmp', AES_encrypt.cpp:130 [342]  (2.32 ns)
+
+ <State 39>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:149) [362]  (1.77 ns)
+
+ <State 40>: 4.1ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:149) [362]  (0 ns)
+	'add' operation ('add_ln150', AES_encrypt.cpp:150) [369]  (1.78 ns)
+	'getelementptr' operation ('StateArrayTmp_addr_4', AES_encrypt.cpp:150) [372]  (0 ns)
+	'load' operation ('StateArrayTmp_load', AES_encrypt.cpp:150) on array 'StateArrayTmp', AES_encrypt.cpp:130 [373]  (2.32 ns)
+
+ <State 41>: 4.64ns
+The critical path consists of the following:
+	'load' operation ('StateArrayTmp_load', AES_encrypt.cpp:150) on array 'StateArrayTmp', AES_encrypt.cpp:130 [373]  (2.32 ns)
+	'store' operation ('store_ln150', AES_encrypt.cpp:150) of variable 'StateArrayTmp_load', AES_encrypt.cpp:150 on array 'StateArray', AES_encrypt.cpp:39 [374]  (2.32 ns)
+
+ <State 42>: 1.83ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', AES_encrypt.cpp:156) [385]  (0 ns)
+	'add' operation ('add_ln158', AES_encrypt.cpp:158) [394]  (1.83 ns)
+
+ <State 43>: 5.08ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:157) [398]  (0 ns)
+	'add' operation ('add_ln158_2', AES_encrypt.cpp:158) [409]  (1.82 ns)
+	'getelementptr' operation ('ExpandedKey_addr_14', AES_encrypt.cpp:158) [411]  (0 ns)
+	'load' operation ('ExpandedKey_load_9', AES_encrypt.cpp:158) on array 'ExpandedKey', AES_encrypt.cpp:40 [412]  (3.25 ns)
+
+ <State 44>: 6.57ns
+The critical path consists of the following:
+	'load' operation ('ExpandedKey_load_9', AES_encrypt.cpp:158) on array 'ExpandedKey', AES_encrypt.cpp:40 [412]  (3.25 ns)
+	'xor' operation ('xor_ln158', AES_encrypt.cpp:158) [414]  (0.99 ns)
+	'store' operation ('store_ln158', AES_encrypt.cpp:158) of variable 'xor_ln158', AES_encrypt.cpp:158 on array 'StateArray', AES_encrypt.cpp:39 [415]  (2.32 ns)
+
+ <State 45>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:162) [435]  (1.77 ns)
+
+ <State 46>: 4.1ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', AES_encrypt.cpp:162) [435]  (0 ns)
+	'add' operation ('add_ln163', AES_encrypt.cpp:163) [442]  (1.78 ns)
+	'getelementptr' operation ('StateArray_addr_14', AES_encrypt.cpp:163) [445]  (0 ns)
+	'load' operation ('StateArray_load_13', AES_encrypt.cpp:163) on array 'StateArray', AES_encrypt.cpp:39 [446]  (2.32 ns)
+
+ <State 47>: 4.64ns
+The critical path consists of the following:
+	'load' operation ('StateArray_load_13', AES_encrypt.cpp:163) on array 'StateArray', AES_encrypt.cpp:39 [446]  (2.32 ns)
+	'store' operation ('store_ln163', AES_encrypt.cpp:163) of variable 'StateArray_load_13', AES_encrypt.cpp:163 on array 'CipherText' [447]  (2.32 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

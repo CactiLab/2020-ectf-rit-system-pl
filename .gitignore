@@ -12,6 +12,7 @@
 !src/
 !proj/gen_bitstream.tcl
 !proj/create_bd.tcl
+!AES_IP/
 
 #Digilent Added ignore rules for Vivado projects
 

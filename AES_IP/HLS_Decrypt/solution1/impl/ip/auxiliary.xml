@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="decrypt" xd:componentRef="decrypt" xd:initiationInterval="2097" xd:clockPeriod="10.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_AES_bus_s" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="CipherText[][]" xd:originalName="CipherText" xd:direction="in" xd:interfaceRef="s_axi_AES_bus_s" xd:busTypeRef="axilite" xd:offset="0x10" xd:arraySize="16" xd:dataWidth="8"/>
+  <xd:arg xd:name="PlainText[][]" xd:originalName="PlainText" xd:direction="out" xd:interfaceRef="s_axi_AES_bus_s" xd:busTypeRef="axilite" xd:offset="0x20" xd:arraySize="16" xd:dataWidth="8"/>
+  <xd:latencyEstimates xd:best-case="1486" xd:worst-case="2096" xd:average-case="1796"/>
+  <xd:resourceEstimates xd:LUT="2689" xd:FF="741" xd:BRAM="10" xd:DSP="0"/>
+</xd:acceleratorMap>

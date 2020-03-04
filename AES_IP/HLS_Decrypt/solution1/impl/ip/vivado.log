@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed Feb 26 15:08:05 2020
+# Process ID: 996118
+# Current directory: /home/jason/Documents/misc/HLS_AES_Zip/HLS_Decrypt/solution1/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /home/jason/Documents/misc/HLS_AES_Zip/HLS_Decrypt/solution1/impl/ip/vivado.log
+# Journal file: /home/jason/Documents/misc/HLS_AES_Zip/HLS_Decrypt/solution1/impl/ip/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/jason/.Xilinx/Vivado/Vivado_init.tcl'
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.1/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 26 15:08:18 2020...

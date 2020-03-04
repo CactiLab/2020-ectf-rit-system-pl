@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="AES_decrypt.cpp" path="/home/jason/Documents/misc/HLS_AES_Zip/AES_decrypt.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="AES_decrypt_test.cpp" path="/home/jason/Documents/misc/HLS_AES_Zip/AES_decrypt_test.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

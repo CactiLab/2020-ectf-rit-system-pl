@@ -10,7 +10,7 @@
 #******************************************************************
 
 set origin_dir "."
-set project_bd "$origin_dir/src/bd/system/system.bd"
+set project_bd "$origin_dir/proj/rit_pl_proj/rit_pl_proj.srcs/sources_1/bd/system/system.bd"
 
 set synth_comp "synth_design Complete!"
 set impl_run "Running Design Initialization..."

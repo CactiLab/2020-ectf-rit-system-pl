@@ -10,7 +10,8 @@
 #******************************************************************
 
 set origin_dir "."
-set project_bd "$origin_dir/proj/rit_pl_proj/rit_pl_proj.srcs/sources_1/bd/system/system.bd"
+
+#set project_bd "$origin_dir/proj/rit_pl_proj/rit_pl_proj.srcs/sources_1/bd/system/system.bd"
 
 set synth_comp "synth_design Complete!"
 set impl_run "Running Design Initialization..."
@@ -21,6 +22,7 @@ if { $::argc > 0 } {
     set option [string trim [lindex $::argv $i]]
     switch -regexp -- $option {
       "--project_file" { incr i; set project_file [lindex $::argv $i] }
+      "--project_bd" { incr i; set project_bd [lindex $::argv $i] }
       default {
         if { [regexp {^-} $option] } {
           puts "ERROR: Unknown option '$option' specified, expecting --project_file arg.\n"

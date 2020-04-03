@@ -18,7 +18,7 @@ set impl_run "Running Design Initialization..."
 set bitstream_comp "write_bitstream Complete!"
 
 if { $::argc > 0 } {
-  for {set i 0} {$i < [llength $::argc]} {incr i} {
+  for {set i 0} {$i < $::argc} {incr i} {
     set option [string trim [lindex $::argv $i]]
     switch -regexp -- $option {
       "--project_file" { incr i; set project_file [lindex $::argv $i] }
